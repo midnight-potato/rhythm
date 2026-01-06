@@ -33,7 +33,7 @@ export default function Home() {
     const a = document.createElement("a");
     
     a.href = url;
-    a.download = "level.zip";
+    a.download = `${formData.get("title")}-level.zip`;
     document.body.appendChild(a);
     a.click();
     
