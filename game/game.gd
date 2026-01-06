@@ -4,6 +4,7 @@ const Conductor = preload("res://components/conductor.tscn")
 const Tier = preload('res://components/tier.tscn')
 var conductor
 var combo: int = 0
+var paused: bool = false
 #const LEVEL = '{"bpm":60,"notes":[{"t":1,"s":1,"a":0.25},{"t":2,"s":1,"a":0.5}]}'
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +31,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		pause()
+	if paused: return
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
 			var tier := calc_score(conductor.get_hit_diff(true))
@@ -48,6 +52,7 @@ func _process(_delta: float) -> void:
 		conductor.remove_note()
 		combo = 0
 		update_stats()
+	
 	# TODO pausing and finish level
 
 func _spawn_tier(text: String, offset: float) -> void:
@@ -66,3 +71,7 @@ func calc_score(diff: float) -> Dictionary:
 func update_stats():
 	#$score.text = str(GameState.score)
 	%comboNum.text = str(combo)
+
+func pause():
+	paused = false if paused else true
+	conductor.stream_paused = paused

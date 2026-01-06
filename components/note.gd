@@ -11,5 +11,5 @@ func _ready() -> void:
 	self.position = Vector2(100000, 100000)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	self.position = Vector2.from_angle(-angle) * (speed * (deadline - get_parent().song_pos) + radius)
