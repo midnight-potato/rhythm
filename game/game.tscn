@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=5 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
+[ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_vasa2"]
 
 [sub_resource type="Gradient" id="Gradient_l1rk1"]
-offsets = PackedFloat32Array(0.62416106, 0.66442955, 0.70469797)
+offsets = PackedFloat32Array(0.6375839, 0.66442955, 0.6912752)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vasa2"]
@@ -24,5 +25,9 @@ offset_top = -316.0
 offset_right = -550.0
 offset_bottom = -293.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="target" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_vasa2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4439216, 0.4439216)
+texture = ExtResource("2_vasa2")
