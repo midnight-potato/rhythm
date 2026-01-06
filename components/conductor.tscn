@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://uv6wdqf1nb7h"]
+
+[ext_resource type="Script" uid="uid://3fpvfg3kvrvm" path="res://components/conductor.gd" id="1_ejoai"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+script = ExtResource("1_ejoai")
