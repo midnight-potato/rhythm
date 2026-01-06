@@ -6,6 +6,7 @@ import { Editor } from "@/components/Editor";
 
 export default function Home() {
   const [file, setFile] = useState<File|null>(null);
+  const [level, setLevel] = useState<{a: number, s: number, t: number}[]>([]);
   
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ export default function Home() {
       "author": formData.get("author"),
       "designer": formData.get("designer"),
       "bpm": formData.get("bpm"),
+      "level": level,
     }
 
     const zip = new JSZip();
@@ -57,11 +59,12 @@ export default function Home() {
           <Input type="text" name="author" placeholder="Author"/>
           <Input type="text" name="designer" placeholder="Designer"/>
           <Input type="number" name="bpm" placeholder="BPM"/>
+          <label>{JSON.stringify(level)}</label>
 
           <input type="submit" value="Export" className="bg-blue-600 p-2 m-1 rounded-md w-min"/>
         </form>
         <div className="w-[80%]">
-          <Editor/>
+          <Editor level={level}/>
         </div>
       </div>
     </div>

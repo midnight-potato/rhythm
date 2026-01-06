@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { Input } from "./Input";
 
-export function Editor() {
-  const [level, setLevel] = useState<{a: number, s: number, t: number}[]>([]);
+export function Editor({level}: {level: {a: number, s: number, t: number}[]}) {
   const [addOpen, setAddOpen] = useState(false);
   const [selected, setSelected] = useState<number>();
 
