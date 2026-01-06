@@ -1,17 +1,16 @@
 extends Node2D
 
 
-const Note = preload("res://components/note.tscn")
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var note = Note.instantiate()
-	note.deadline = Time.get_ticks_msec() + 2000
-	note.speed = 1
-	note.angle = PI / 4
-	add_child(note)
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_level_0_pressed() -> void:
+	GameState.selected_level = "res://levels/level0.zip"
+	get_tree().change_scene_to_file("res://game/game.tscn")

@@ -5,7 +5,7 @@ var angle: float
 var speed: float  # pixels per milisecond
 
 func get_location() -> Vector2:  # pixels
-	return Vector2.from_angle(-angle) * speed * (deadline - Time.get_ticks_msec())
+	return Vector2.from_angle(-angle) * speed * (deadline - get_parent().song_pos * 1000)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
