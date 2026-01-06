@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhgh40v6kccr"]
+
+[ext_resource type="Script" uid="uid://dbauqg0eu5tl7" path="res://level_select/level_button.gd" id="1_t4p38"]
+
+[node name="LevelButton" type="PanelContainer"]
+script = ExtResource("1_t4p38")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "level name"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
