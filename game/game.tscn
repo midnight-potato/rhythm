@@ -6,3 +6,9 @@
 script = ExtResource("1_m637p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="score" type="Label" parent="."]
+offset_left = -590.0
+offset_top = -316.0
+offset_right = -550.0
+offset_bottom = -293.0

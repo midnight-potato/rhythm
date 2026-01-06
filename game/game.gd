@@ -1,7 +1,8 @@
 extends Node2D
 
 const Conductor = preload("res://components/conductor.tscn")
-
+var conductor
+const max_score := 10.0
 #const LEVEL = '{"bpm":60,"notes":[{"t":1,"s":1,"a":0.25},{"t":2,"s":1,"a":0.5}]}'
 
 # Called when the node enters the scene tree for the first time.
@@ -18,12 +19,20 @@ func _ready() -> void:
 	var stream = AudioStreamMP3.new()
 	stream.data = music
 	
-	var conductor = Conductor.instantiate()
+	conductor = Conductor.instantiate()
 	conductor.stream = stream
 	conductor.bpm = data["bpm"]
 	conductor.notes = data["notes"]
 	add_child(conductor)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("hit"):
+		if conductor.if_hit():
+			print("hit!")
+			GameState.score += calc_score(conductor.get_hit_diff())
+			conductor.remove_note()
+			print("current score: ", GameState.score)
+
+func calc_score(diff: float):
+	return max_score * exp(-diff)

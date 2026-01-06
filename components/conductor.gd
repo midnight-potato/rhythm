@@ -23,17 +23,27 @@ func _ready() -> void:
 	play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if playing:
 		song_pos = get_playback_position() + AudioServer.get_time_since_last_mix()
 	
-	while not noteNodes.is_empty() and noteNodes[0].deadline < song_pos - 0.100:
+	while not noteNodes.is_empty() and noteNodes[0].deadline < song_pos - 0.200:
+		print("miss!")
 		noteNodes[0].queue_free()
 		noteNodes.pop_front()
-	
-	if Input.is_action_just_pressed("hit"):
-		if not noteNodes.is_empty():
-			var note = noteNodes[0]
-			if abs(note.deadline - song_pos) < 0.040:
-				note.queue_free()
-				noteNodes.pop_front()
+
+func get_hit_diff():
+	if noteNodes.is_empty(): return 0.0
+	return abs(song_pos - noteNodes[0].deadline)
+
+func if_hit() -> bool:
+	if noteNodes.is_empty(): return false
+	if get_hit_diff() < 0.100:
+		return true
+	return false
+
+func remove_note() -> void:
+	if not noteNodes.is_empty():
+		var note = noteNodes[0]
+		note.queue_free()
+		noteNodes.pop_front()
