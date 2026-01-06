@@ -17,6 +17,7 @@ func _ready() -> void:
 		note.deadline = item["t"] / bpm * 60
 		note.speed = item["s"]
 		note.angle = PI * item["a"]
+		note.radius = 100.0
 		add_child(note)
 		noteNodes.append(note)
 	
@@ -27,7 +28,7 @@ func _process(_delta: float) -> void:
 	if playing:
 		song_pos = get_playback_position() + AudioServer.get_time_since_last_mix()
 	
-	while not noteNodes.is_empty() and noteNodes[0].deadline < song_pos - 0.200:
+	while not noteNodes.is_empty() and noteNodes[0].deadline < song_pos - 0.100:
 		print("miss!")
 		noteNodes[0].queue_free()
 		noteNodes.pop_front()

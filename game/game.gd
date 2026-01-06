@@ -29,8 +29,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
-			print("hit!")
-			GameState.score += calc_score(conductor.get_hit_diff())['score']
+			var tier := calc_score(conductor.get_hit_diff())
+			GameState.score += tier['score']
+			print(tier['tier'], "!")
 			conductor.remove_note()
 			update_score()
 			print("current score: ", GameState.score)
