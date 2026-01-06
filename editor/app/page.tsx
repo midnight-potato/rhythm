@@ -2,6 +2,7 @@
 import { FormEvent, useState } from "react";
 import JSZip from "jszip";
 import { Input } from "@/components/Input";
+import { Editor } from "@/components/Editor";
 
 export default function Home() {
   const [file, setFile] = useState<File|null>(null);
@@ -60,7 +61,7 @@ export default function Home() {
           <input type="submit" value="Export" className="bg-blue-600 p-2 m-1 rounded-md w-min"/>
         </form>
         <div className="w-[80%]">
-          
+          <Editor/>
         </div>
       </div>
     </div>
