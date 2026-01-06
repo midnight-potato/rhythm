@@ -28,10 +28,6 @@ func _process(_delta: float) -> void:
 	if playing:
 		song_pos = get_playback_position() + AudioServer.get_time_since_last_mix()
 	
-	while not noteNodes.is_empty() and noteNodes[0].deadline < song_pos - 0.100:
-		print("miss!")
-		noteNodes[0].queue_free()
-		noteNodes.pop_front()
 
 func get_hit_diff():
 	if noteNodes.is_empty(): return 0.0
@@ -39,7 +35,7 @@ func get_hit_diff():
 
 func if_hit() -> bool:
 	if noteNodes.is_empty(): return false
-	if get_hit_diff() < 0.100:
+	if get_hit_diff() < 0.095:
 		return true
 	return false
 

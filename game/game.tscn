@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=7 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_vasa2"]
@@ -14,20 +14,58 @@ height = 200
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_vasa2"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_h7iqs"]
+font_size = 30
+
+[node name="game" type="Node2D"]
 script = ExtResource("1_m637p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="score" type="Label" parent="."]
-offset_left = -590.0
-offset_top = -316.0
-offset_right = -550.0
-offset_bottom = -293.0
-
 [node name="target" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_vasa2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="potato" type="Sprite2D" parent="."]
 scale = Vector2(0.4439216, 0.4439216)
 texture = ExtResource("2_vasa2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_left = -0.45000002
+anchor_top = -0.411
+anchor_right = -0.45000002
+anchor_bottom = -0.411
+offset_left = -576.0
+offset_top = -296.0
+offset_right = -432.0
+offset_bottom = -156.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="comboNum" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "999"
+label_settings = SubResource("LabelSettings_vasa2")
+
+[node name="comboLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "COMBO"
+label_settings = SubResource("LabelSettings_h7iqs")
+
+[node name="tierSpawn" type="Marker2D" parent="."]
+position = Vector2(0, -128)
