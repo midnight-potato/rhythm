@@ -30,9 +30,17 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
 			print("hit!")
-			GameState.score += calc_score(conductor.get_hit_diff())
+			GameState.score += calc_score(conductor.get_hit_diff())['score']
 			conductor.remove_note()
+			update_score()
 			print("current score: ", GameState.score)
 
-func calc_score(diff: float):
-	return max_score * exp(-diff)
+func calc_score(diff: float) -> Dictionary:
+	for tier in GameState.tiers:
+		if diff < tier['threshold']:
+			return tier
+	return {'tier': 'Miss', 'score': 0.0}
+
+
+func update_score():
+	$score.text = str(GameState.score)
