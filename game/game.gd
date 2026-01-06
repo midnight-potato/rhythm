@@ -32,28 +32,29 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
-			var tier := calc_score(conductor.get_hit_diff())
+			var tier := calc_score(conductor.get_hit_diff(true))
 			GameState.score += tier['score']
 			print(tier['tier'], "!")
-			conductor.remove_note()
 			combo += 1
-			_spawn_tier(tier['tier'])
+			_spawn_tier(tier['tier'], conductor.get_hit_diff(false))
+			conductor.remove_note()
 			update_stats()
 			print("current score: ", GameState.score)
 			print("current combo: ", combo)
 		else:
 			combo = 0
 	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.song_pos - 0.095:
+		_spawn_tier('Miss', -1.0)
 		conductor.remove_note()
 		combo = 0
 		update_stats()
 	# TODO pausing and finish level
 
-func _spawn_tier(text: String) -> void:
+func _spawn_tier(text: String, offset: float) -> void:
 	var tier = Tier.instantiate()
 	tier.fade_time = 0.41
 	tier.travel_speed = 160.0
-	tier.set_text(text)
+	tier.set_text(text, offset)
 	$tierSpawn.add_child(tier)
 
 func calc_score(diff: float) -> Dictionary:

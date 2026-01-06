@@ -29,13 +29,14 @@ func _process(_delta: float) -> void:
 		song_pos = get_playback_position() + AudioServer.get_time_since_last_mix()
 	
 
-func get_hit_diff():
+func get_hit_diff(absolute: bool):
 	if noteNodes.is_empty(): return 0.0
-	return abs(song_pos - noteNodes[0].deadline)
+	if absolute: return abs(song_pos - noteNodes[0].deadline)
+	return song_pos - noteNodes[0].deadline
 
 func if_hit() -> bool:
 	if noteNodes.is_empty(): return false
-	if get_hit_diff() < 0.095:
+	if get_hit_diff(true) < 0.095:
 		return true
 	return false
 

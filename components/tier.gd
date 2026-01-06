@@ -15,5 +15,8 @@ func _process(delta: float) -> void:
 	if elapsed_time > fade_time:
 		self.queue_free()
 
-func set_text(t: String) -> void:
+func set_text(t: String, o: float) -> void:
 	$tierLabel.text = t
+	var s = "+" if o > 0.0 else ""
+	var off = "" if o == -1.0 else s + str(snapped(o, 0.001))
+	$timeOffset.text = off
