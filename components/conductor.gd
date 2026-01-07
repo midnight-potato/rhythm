@@ -35,7 +35,6 @@ func _process(_delta: float) -> void:
 	#print(playing, " ", stream_paused)
 	if playing and not stream_paused:
 		song_pos = get_playback_position()
-		print(get_playback_position())
 
 func get_offset_pos() -> float:
 	return song_pos + GameState.input_offset
