@@ -57,7 +57,7 @@ func _process(_delta: float) -> void:
 	if paused: return
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
-			var hit_diff = conductor.get_hit_diff(false) + GameState.input_offset
+			var hit_diff = conductor.get_hit_diff(false)
 			stats['total_offset'] += hit_diff
 			var tier := calc_score(abs(hit_diff))
 			stats['score'] += tier['score']
@@ -69,7 +69,7 @@ func _process(_delta: float) -> void:
 			_update_stats_labels()
 			print("current score: ", stats['score'])
 			print("current combo: ", stats['combo'])
-	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.song_pos - 0.095:
+	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.get_offset_pos() - 0.095:
 		tier_counts["Miss"] += 1
 		_spawn_tier('Miss', -1.0)
 		conductor.remove_note()

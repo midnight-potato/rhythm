@@ -27,10 +27,14 @@ func _process(_delta: float) -> void:
 	if playing and not stream_paused:
 		song_pos = get_playback_position() + AudioServer.get_time_since_last_mix()
 
+func get_offset_pos() -> float:
+	return song_pos + GameState.input_offset
+
 func get_hit_diff(absolute: bool):
 	if noteNodes.is_empty(): return 0.0
-	if absolute: return abs(song_pos - noteNodes[0].deadline)
-	return song_pos - noteNodes[0].deadline
+	var diff = get_offset_pos() - noteNodes[0].deadline
+	if absolute: return abs(diff)
+	return diff
 
 func if_hit() -> bool:
 	if noteNodes.is_empty(): return false

@@ -9,7 +9,7 @@ var tiers: Array[Dictionary] = [
 	_new_bracket("Okay", 0.095, 12)
 ]
 var stats: Dictionary
-var input_offset: float = 0.00
+var input_offset: float = 0.0
 
 func _new_bracket(n: String, t: float, s: int) -> Dictionary:
 	return {
