@@ -2,6 +2,7 @@ extends Node2D
 
 const Conductor = preload("res://components/conductor.tscn")
 const Tier = preload('res://components/tier.tscn')
+const Hitmarker = preload("res://components/hitmarker.tscn")
 var conductor
 var paused: bool = false
 var tier_counts: Dictionary
@@ -76,12 +77,19 @@ func _process(_delta: float) -> void:
 			stats['combo'] += 1
 			tier_counts[tier['tier']] += 1
 			_spawn_tier(tier['tier'], hit_diff)
+			_spawn_hitmarker(tier['hitmarker'])
 			conductor.remove_note()
 			_update_stats_labels()
 			print("current score: ", stats['score'])
 			print("current combo: ", stats['combo'])
 	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.get_offset_pos() - 0.1:
 		_miss_note()
+
+func _spawn_hitmarker(imgpath: String):
+	var hitm = Hitmarker.instantiate()
+	hitm.set_hitmarker_img(imgpath)
+	hitm.global_position = conductor.noteNodes[0].get_hitmarker_pos()
+	add_child(hitm)
 
 func _miss_note() -> void:
 	tier_counts["Miss"] += 1

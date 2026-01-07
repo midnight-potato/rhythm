@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqgu3kgcntsv6"
-path="res://.godot/imported/hitmarker.png-8b31c009fc2a30f88f5aa52d1c8e95b5.ctex"
+uid="uid://bsb8irqfuxhjr"
+path="res://.godot/imported/hitmarker_miss.png-6147b6986dd8afa4285d550281ff4d29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hitmarker.png"
-dest_files=["res://.godot/imported/hitmarker.png-8b31c009fc2a30f88f5aa52d1c8e95b5.ctex"]
+source_file="res://assets/hitmarker_miss.png"
+dest_files=["res://.godot/imported/hitmarker_miss.png-6147b6986dd8afa4285d550281ff4d29.ctex"]
 
 [params]
 

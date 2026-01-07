@@ -1,7 +1,6 @@
 extends AudioStreamPlayer
 
 const Note = preload("res://components/note.tscn")
-const Hitmarker = preload("res://components/hitmarker.tscn")
 
 @export var bpm: float = 120
 @export var notes: Array = []
@@ -55,9 +54,6 @@ func remove_note() -> void:
 	if not noteNodes.is_empty():
 		var note = noteNodes[0]
 		note.hit()
-		var hitm = Hitmarker.instantiate()
-		hitm.global_position = note.get_hitmarker_pos()
-		add_child(hitm)
 		noteNodes.pop_front()
 
 func remove_all_notes() -> void:

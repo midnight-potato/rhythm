@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c60qqmb3jj6o7"]
 
 [ext_resource type="Script" uid="uid://d0o5hxts0qvpp" path="res://components/hitmarker.gd" id="1_lo6ca"]
-[ext_resource type="Texture2D" uid="uid://dqgu3kgcntsv6" path="res://assets/hitmarker.png" id="2_0iung"]
+[ext_resource type="Texture2D" uid="uid://bsb8irqfuxhjr" path="res://assets/hitmarker_miss.png" id="2_lo6ca"]
 
 [node name="hitmarker" type="Node2D"]
 visible = false
@@ -9,4 +9,4 @@ script = ExtResource("1_lo6ca")
 
 [node name="hitmarkerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_0iung")
+texture = ExtResource("2_lo6ca")

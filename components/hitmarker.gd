@@ -18,3 +18,6 @@ func _ready() -> void:
 	tween.tween_property($hitmarkerSprite, 'scale', Vector2(0.15, 0.15), 0.15)
 	tween.set_parallel(false)
 	tween.tween_callback(self.queue_free)
+
+func set_hitmarker_img(path: String):
+	$hitmarkerSprite.texture = load(path)
