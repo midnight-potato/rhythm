@@ -1,12 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4wrlymgyrm41"]
+[gd_scene load_steps=4 format=3 uid="uid://4wrlymgyrm41"]
 
-[ext_resource type="Shader" uid="uid://cg1d4athrna8l" path="res://components/tier.gdshader" id="1_xgi6i"]
 [ext_resource type="Script" uid="uid://bkadrwbfgqa77" path="res://components/tier.gd" id="2_850h1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xgi6i"]
-shader = ExtResource("1_xgi6i")
-shader_parameter/current_time = 0.0
-shader_parameter/fadeout_time = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_j67af"]
 font_size = 70
@@ -18,7 +12,6 @@ font_size = 30
 script = ExtResource("2_850h1")
 
 [node name="tierLabel" type="Label" parent="."]
-material = SubResource("ShaderMaterial_xgi6i")
 offset_left = -256.0
 offset_top = -90.0
 offset_right = 256.0
@@ -27,7 +20,6 @@ label_settings = SubResource("LabelSettings_j67af")
 horizontal_alignment = 1
 
 [node name="timeOffset" type="Label" parent="."]
-material = SubResource("ShaderMaterial_xgi6i")
 offset_left = -256.0
 offset_top = -8.0
 offset_right = 256.0
