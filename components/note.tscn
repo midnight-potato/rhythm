@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://d00a3qq7gmch"]
 
 [ext_resource type="Script" uid="uid://c46eknwe7uvsu" path="res://components/note.gd" id="1_nibca"]
-[ext_resource type="Texture2D" uid="uid://cfu0qorq7tniq" path="res://assets/triangle_right.png" id="2_10iuv"]
+[ext_resource type="Texture2D" uid="uid://cw2ogmpeo2oai" path="res://assets/knife.png" id="2_10iuv"]
 
 [node name="Note" type="Node2D"]
 script = ExtResource("1_nibca")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-23.999998, 3.5527137e-15)
-scale = Vector2(0.3671875, 0.3671875)
+position = Vector2(0, 64)
 texture = ExtResource("2_10iuv")

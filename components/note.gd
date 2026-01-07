@@ -7,7 +7,7 @@ var radius: float # offset from the center, in pixels
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.rotation = PI - angle
+	self.rotation = PI - angle + PI/2
 	self.position = Vector2(100000, 100000)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

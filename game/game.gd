@@ -63,7 +63,7 @@ func _process(_delta: float) -> void:
 			print(tier['tier'], "!")
 			stats['combo'] += 1
 			tier_counts[tier['tier']] += 1
-			_spawn_tier(tier['tier'], -conductor.get_hit_diff(false))
+			_spawn_tier(tier['tier'], conductor.get_hit_diff(false))
 			conductor.remove_note()
 			_update_stats_labels()
 			print("current score: ", stats['score'])
