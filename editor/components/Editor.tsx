@@ -29,7 +29,7 @@ export function Editor({level}: {level: {a: number, s: number, t: number}[]}) {
       </div>
       <div className="relative flex justify-center items-center w-full text-5xl">
         *
-        {level.map((beat, i) => {
+        {level.sort((a, b) => a.t - b.t).map((beat, i) => {
           if (selected !== undefined && selected !== i) return null;
           return (
             <div
