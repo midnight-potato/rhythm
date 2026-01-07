@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxts30b442841"]
+[gd_scene load_steps=7 format=3 uid="uid://bxts30b442841"]
 
 [ext_resource type="Script" uid="uid://b1sls6bfes6t" path="res://menus/end_menu.gd" id="1_l2njh"]
 
@@ -7,6 +7,10 @@ font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_i5a8q"]
 font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2njh"]
+line_spacing = -8.0
+font_size = 22
 
 [sub_resource type="Theme" id="Theme_l2njh"]
 default_font_size = 26
@@ -19,7 +23,7 @@ script = ExtResource("1_l2njh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+[node name="background" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,11 +62,25 @@ text = "Your Score:"
 label_settings = SubResource("LabelSettings_bpxhh")
 horizontal_alignment = 1
 
-[node name="scoreAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer"]
+[node name="scoreAmtContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="scoreAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer/scoreAmtContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "9999.99"
+text = "999999"
 label_settings = SubResource("LabelSettings_i5a8q")
+horizontal_alignment = 1
+
+[node name="percentageAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer/scoreAmtContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "99.99%
+"
+label_settings = SubResource("LabelSettings_l2njh")
 horizontal_alignment = 1
 
 [node name="statsContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]

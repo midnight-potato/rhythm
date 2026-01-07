@@ -6,14 +6,16 @@ var conductor
 var paused: bool = false
 var tier_counts: Dictionary
 var stats: Dictionary = {
-	'score' = 0.0,
+	'score' = 0,
 	'max_combo' = 0,
 	'perfects' = 0,
 	'combo' = 0,
 	'misses' = 0,
 	'total_offset' = 0.0,
 	'avg_offset' = 0.0,
-	'finished' = false
+	'finished' = false,
+	'percentage_notes' = 0.0,
+	'percentage_score' = 0.0
 }
 #const LEVEL = '{"bpm":60,"notes":[{"t":1,"s":1,"a":0.25},{"t":2,"s":1,"a":0.5}]}'
 
@@ -61,7 +63,7 @@ func _process(_delta: float) -> void:
 			print(tier['tier'], "!")
 			stats['combo'] += 1
 			tier_counts[tier['tier']] += 1
-			_spawn_tier(tier['tier'], hit_diff)
+			_spawn_tier(tier['tier'], -conductor.get_hit_diff(false))
 			conductor.remove_note()
 			_update_stats_labels()
 			print("current score: ", stats['score'])
@@ -77,7 +79,6 @@ func _process(_delta: float) -> void:
 		stats['finished'] = true
 		_update_stats()
 		end_game()
-	# TODO pausing and finish level
 
 func _spawn_tier(text: String, offset: float) -> void:
 	var tier = Tier.instantiate()
@@ -90,7 +91,7 @@ func calc_score(diff: float) -> Dictionary:
 	for tier in GameState.tiers:
 		if diff < tier['threshold']:
 			return tier
-	return {'tier': 'Miss', 'score': 0.0}
+	return {'tier': 'Miss', 'score': 0}
 
 func _update_stats_labels() -> void:
 	#$score.text = str(stats['score'])
@@ -100,7 +101,10 @@ func _update_stats() -> void:
 	stats['perfects'] = tier_counts['Perfect']
 	stats['max_combo'] = stats['combo'] if stats['combo'] > stats['max_combo'] else stats['max_combo']
 	stats['misses'] = tier_counts['Miss']
+	#stats['total_notes'] -= conductor.noteNodes.size()
 	stats['avg_offset'] = stats['total_offset'] / (stats['total_notes'] - stats['misses'])
+	stats['percentage_notes'] = (stats['total_notes'] - stats['misses']) / float(stats['total_notes'])
+	stats['percentage_score'] = stats['score'] / float(stats['total_notes'] * GameState.tiers[0]['score'])
 
 func pause() -> void:
 	paused = false if paused else true

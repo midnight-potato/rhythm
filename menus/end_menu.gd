@@ -12,6 +12,8 @@ func _process(_delta: float) -> void:
 func set_stats(stats: Dictionary):
 	if 'score' in stats:
 		%scoreAmt.text = str(stats['score'])
+	if 'percentage_score' in stats and 'percentage_notes' in stats:
+		%percentageAmt.text = str(snapped(stats['percentage_score'] * 30 + stats['percentage_notes'] * 70, 0.01)) + '%\n'
 	if 'max_combo' in stats:
 		%mcomboAmt.text = str(stats['max_combo'])
 	if 'perfects' in stats:
