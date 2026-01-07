@@ -22,14 +22,19 @@ var js_load_callback = JavaScriptBridge.create_callback(_on_javascript_load)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if OS.has_feature("web"):
-		var document = JavaScriptBridge.get_interface("document")
-		var input = document.createElement('input')
-		input.type = "file"
-		input.accept = "audio/mp3,audio/mpeg"
-		input.onchange = js_callback
-		input.click()
+		$WebLayer.visible = true
+		_open_browser_select()
 	else:
 		$MusicDialog.show()
+
+
+func _open_browser_select():
+	var document = JavaScriptBridge.get_interface("document")
+	var input = document.createElement('input')
+	input.type = "file"
+	input.accept = "audio/mp3,audio/mpeg"
+	input.onchange = js_callback
+	input.click()
 
 
 func _on_javascript_file_change(arguments: Array):
@@ -49,6 +54,7 @@ func _on_javascript_load(arguments: Array):
 	file.close()
 
 	_on_music_dialog_file_selected("user://music.mp3")
+	$WebLayer.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -184,3 +190,7 @@ func _on_export_button_pressed():
 	
 	if OS.has_feature("web"):
 		JavaScriptBridge.download_buffer(level_bytes, level_name + ".zip", "application/zip")
+
+
+func _on_web_open_button_pressed() -> void:
+	_open_browser_select()
