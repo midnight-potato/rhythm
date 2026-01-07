@@ -19,7 +19,6 @@ func _ready() -> void:
 		note.speed = item["s"]
 		note.angle = PI * item["a"]
 		note.radius = 100.0
-		print("note added for ", note.deadline)
 		add_child(note)
 		noteNodes.append(note)
 	
@@ -34,7 +33,6 @@ func _process(_delta: float) -> void:
 	#print(playing, " ", stream_paused)
 	if playing and not stream_paused:
 		song_pos = get_playback_position()
-		print(get_playback_position())
 
 func get_offset_pos() -> float:
 	return song_pos + GameState.input_offset
