@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=3 uid="uid://giriw1bcg1ts"]
+
+[ext_resource type="Script" uid="uid://bhwks7p2lr4sx" path="res://level_editor/level_editor.gd" id="1_7e0dv"]
+
+[sub_resource type="Theme" id="Theme_7e0dv"]
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_gylj0"]
+default_font_size = 30
+
+[node name="LevelEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7e0dv")
+
+[node name="MusicDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+size = Vector2i(1280, 720)
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 1280.0
+offset_bottom = 379.0
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Editing level: X"
+horizontal_alignment = 1
+
+[node name="BPMLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "BPM: 120"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_7e0dv")
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MusicButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Change music"
+
+[node name="BPMButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Set BPM"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_gylj0")
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "⏪"
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "▶️"
+
+[node name="ForwardButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "⏩"
+
+[node name="Notes" type="ColorRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 0
+offset_top = 418.0
+offset_right = 1280.0
+offset_bottom = 618.0
+color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+
+[connection signal="canceled" from="MusicDialog" to="." method="_on_music_dialog_canceled"]
+[connection signal="file_selected" from="MusicDialog" to="." method="_on_music_dialog_file_selected"]
+[connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ForwardButton" to="." method="_on_forward_button_pressed"]
