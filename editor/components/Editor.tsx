@@ -79,7 +79,7 @@ export function Editor({level}: {level: {a: number, s: number, t: number}[]}) {
               const add = {
                 t: Number(beat),
                 a: Number(rotation),
-                s: 1
+                s: 1000
               };
               level.push(add);
               setAddOpen(false);
