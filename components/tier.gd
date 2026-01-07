@@ -8,7 +8,10 @@ func _ready() -> void:
 	#elapsed_time += delta
 	var tween = create_tween()
 	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(self, 'position:y', position.y - travel_dist, fade_time)
+	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, 'modulate:a', 0.0, fade_time)
 	tween.set_parallel(false)
 	tween.tween_callback(self.queue_free)
