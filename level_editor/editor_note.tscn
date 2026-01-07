@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ey351k1ghany"]
+[gd_scene load_steps=5 format=3 uid="uid://ey351k1ghany"]
 
 [ext_resource type="Texture2D" uid="uid://bkru7pmgs2i4n" path="res://assets/note.png" id="1_kcxod"]
+[ext_resource type="Script" uid="uid://dgn244w047sxy" path="res://level_editor/editor_note.gd" id="2_cpyhj"]
+[ext_resource type="Texture2D" uid="uid://p8xi6mxagyoo" path="res://assets/note_hover.png" id="2_milxq"]
+[ext_resource type="Texture2D" uid="uid://cj0n8bdt38tv7" path="res://assets/note_clicked.png" id="2_pnxff"]
 
-[node name="EditorNote" type="Sprite2D"]
-texture = ExtResource("1_kcxod")
-centered = false
+[node name="EditorNote" type="TextureButton"]
+offset_right = 30.0
+offset_bottom = 200.0
+button_mask = 3
+texture_normal = ExtResource("1_kcxod")
+texture_pressed = ExtResource("2_pnxff")
+texture_hover = ExtResource("2_milxq")
+script = ExtResource("2_cpyhj")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

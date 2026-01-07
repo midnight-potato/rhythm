@@ -43,12 +43,24 @@ func _process(delta: float) -> void:
 
 
 func _add_note(beat: float):
+	for note in notes:
+		if note["t"] == beat:
+			return
+
 	var note = { "t": beat, "a": fmod(beat,snap)/snap*2, "s": 1000 }
 	notes.append(note)
+	notes.sort_custom(func (a, b): return a["t"] < b["t"])
 	
-	var node: Sprite2D = EditorNote.instantiate()
+	var node: Control = EditorNote.instantiate()
 	node.position.x = beat / bpm * 60 * 200
+	node.connect("deleted", func (): return _on_note_deleted(beat))
 	%Notes.add_child(node)
+
+
+func _on_note_deleted(beat: float):
+	print('before: ', notes.size())
+	notes = notes.filter(func (note): return note["t"] != beat)
+	print('after:  ', notes.size())
 
 
 # call this instead of updating the value of bpm!
