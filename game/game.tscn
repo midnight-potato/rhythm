@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=9 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
+[ext_resource type="Texture2D" uid="uid://qqs72yp0tbb8" path="res://assets/target.png" id="2_4fuuu"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://r84aamhgpquh" path="res://menus/pause_menu.tscn" id="3_h7iqs"]
 
@@ -26,8 +27,15 @@ script = ExtResource("1_m637p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="target" type="Sprite2D" parent="."]
+[node name="targetRing" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_vasa2")
+
+[node name="target" type="Node2D" parent="."]
+visible = false
+
+[node name="targetSprite" type="Sprite2D" parent="target"]
+position = Vector2(0, -96)
+texture = ExtResource("2_4fuuu")
 
 [node name="potato" type="Sprite2D" parent="."]
 scale = Vector2(0.4439216, 0.4439216)
