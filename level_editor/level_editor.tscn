@@ -33,10 +33,11 @@ access = 2
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_top = 28.0
-offset_right = 1280.0
-offset_bottom = 379.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 388.0
+grow_horizontal = 2
 theme_override_constants/separation = 30
 alignment = 1
 
@@ -86,6 +87,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Set BPM"
 
+[node name="ExportButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Export level"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_gylj0")
@@ -124,6 +129,7 @@ color = Color(0.19793725, 0.19793722, 0.19793722, 1)
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer3/SnapValue" to="." method="_on_snap_value_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BPMButton" to="." method="_on_bpm_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/ForwardButton" to="." method="_on_forward_button_pressed"]

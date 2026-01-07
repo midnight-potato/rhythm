@@ -7,6 +7,7 @@ const ZOOM = 400
 var bpm: int = 60
 var notes: Array[Dictionary] = []
 var play_pos := 0.0
+var music_path: String
 var level_name := "unknown"
 
 var is_setting_bpm := false
@@ -15,9 +16,39 @@ var bpm_tap_count := 0
 
 var snap := 4
 
+var js_callback = JavaScriptBridge.create_callback(_on_javascript_file_change)
+var js_load_callback = JavaScriptBridge.create_callback(_on_javascript_load)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$MusicDialog.show()
+	if OS.has_feature("web"):
+		var document = JavaScriptBridge.get_interface("document")
+		var input = document.createElement('input')
+		input.type = "file"
+		input.accept = "audio/mp3,audio/mpeg"
+		input.onchange = js_callback
+		input.click()
+	else:
+		$MusicDialog.show()
+
+
+func _on_javascript_file_change(arguments: Array):
+	var event = arguments[0]
+	var file = event.target.files[0]
+	
+	var reader = JavaScriptBridge.create_object("FileReader")
+	reader.onload = js_load_callback
+	reader.readAsArrayBuffer(file)
+
+
+func _on_javascript_load(arguments: Array):
+	var data = JavaScriptBridge.js_buffer_to_packed_byte_array(arguments[0].target.result)
+
+	var file = FileAccess.open("user://music.mp3", FileAccess.WRITE)
+	file.store_buffer(data)
+	file.close()
+
+	_on_music_dialog_file_selected("user://music.mp3")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -78,11 +109,15 @@ func _on_music_dialog_canceled() -> void:
 
 
 func _on_music_dialog_file_selected(path: String) -> void:
+	music_path = path
 	var stream = AudioStreamMP3.load_from_file(path)
 	if not stream:
 		get_tree().reload_current_scene()
 		return
-	$MusicPlayer.stream = stream
+	var sync_stream = AudioStreamSynchronized.new()
+	sync_stream.stream_count = 1
+	sync_stream.set_sync_stream(0, stream)
+	$MusicPlayer.stream = sync_stream
 	$MusicPlayer.play()
 	$MusicPlayer.stream_paused = true
 	%Notes.size.x = stream.get_length() * ZOOM
@@ -126,3 +161,26 @@ func _on_bpm_value_changed(value: int) -> void:
 
 func _on_snap_value_changed(value: int) -> void:
 	snap = value
+
+
+func _on_export_button_pressed():
+	var writer = ZIPPacker.new()
+	var err = writer.open("user://level.zip")
+	if err != OK:
+		return
+	
+	var level_data = JSON.stringify({"bpm": bpm, "notes": notes, "music": "music.mp3"})
+	writer.start_file("level.json")
+	writer.write_file(level_data.to_utf8_buffer())
+	writer.close_file()
+	
+	writer.start_file("music.mp3")
+	writer.write_file(FileAccess.get_file_as_bytes(music_path))
+	writer.close_file()
+
+	writer.close()
+	
+	var level_bytes = FileAccess.get_file_as_bytes("user://level.zip")
+	
+	if OS.has_feature("web"):
+		JavaScriptBridge.download_buffer(level_bytes, level_name + ".zip", "application/zip")
