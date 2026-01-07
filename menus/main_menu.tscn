@@ -53,10 +53,5 @@ text = "Play"
 layout_mode = 2
 text = "Level editor"
 
-[node name="settingsButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Settings"
-
 [connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/editorButton" to="." method="_on_editor_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/settingsButton" to="." method="_on_settings_button_pressed"]
