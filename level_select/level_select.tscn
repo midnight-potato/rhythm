@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cij7fnfg7oigo"]
+[gd_scene load_steps=7 format=3 uid="uid://cij7fnfg7oigo"]
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_kp0lh"]
-[ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
-[ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
+[ext_resource type="Texture2D" uid="uid://07d4xjrvqglw" path="res://assets/potato2-bg.png" id="2_mtmfa"]
+[ext_resource type="PackedScene" path="res://menus/end_menu.tscn" id="2_sv8in"]
+[ext_resource type="PackedScene" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
 
 [sub_resource type="Theme" id="Theme_1wbfr"]
 default_font_size = 30
@@ -19,6 +20,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 1277.0
+offset_bottom = 716.0
+texture = ExtResource("2_mtmfa")
+expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0

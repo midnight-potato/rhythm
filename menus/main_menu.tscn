@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://brrecjwghlbdp"]
+[gd_scene load_steps=5 format=3 uid="uid://brrecjwghlbdp"]
 
 [ext_resource type="Script" uid="uid://cd3625k6fmmx" path="res://menus/main_menu.gd" id="1_8gy84"]
 [ext_resource type="Texture2D" uid="uid://chhw4jikqfbwx" path="res://assets/bg-potato.png" id="2_ij7vn"]
+[ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="3_yjgyn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ij7vn"]
+font = ExtResource("3_yjgyn")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_8gy84")
@@ -31,7 +37,8 @@ theme_override_constants/separation = 20
 [node name="Title" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "some random game"
+text = "potato"
+label_settings = SubResource("LabelSettings_ij7vn")
 horizontal_alignment = 1
 
 [node name="playButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
