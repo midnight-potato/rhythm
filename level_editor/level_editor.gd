@@ -37,8 +37,8 @@ func _process(delta: float) -> void:
 				bpm_tap_count += 1
 				set_bpm(round(bpm_tap_count / (play_pos - first_bpm_tap) * 60.0))
 		else:
-			print('add note at ', play_pos)
 			var beat: float = round(play_pos / 60 * bpm * snap) / snap
+			print('add note at ', play_pos, ', beat ', beat)
 			_add_note(beat)
 
 
@@ -47,7 +47,7 @@ func _add_note(beat: float):
 	notes.append(note)
 	
 	var node: Sprite2D = EditorNote.instantiate()
-	node.position.x = beat * bpm / 60 * 200
+	node.position.x = beat / bpm * 60 * 200
 	%Notes.add_child(node)
 
 
