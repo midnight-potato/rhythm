@@ -5,10 +5,14 @@ const Tier = preload('res://components/tier.tscn')
 var conductor
 var combo: int = 0
 var paused: bool = false
+var tier_counts: Dictionary
 #const LEVEL = '{"bpm":60,"notes":[{"t":1,"s":1,"a":0.25},{"t":2,"s":1,"a":0.5}]}'
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	tier_counts = {"Miss": 0}
+	for tier in GameState.tiers:
+		tier_counts[tier["tier"]] = 0
 	paused = false
 	$pauseMenu.visible = false
 	# reading the level data
@@ -43,6 +47,7 @@ func _process(_delta: float) -> void:
 			GameState.score += tier['score']
 			print(tier['tier'], "!")
 			combo += 1
+			tier_counts[tier['tier']] += 1
 			_spawn_tier(tier['tier'], conductor.get_hit_diff(false))
 			conductor.remove_note()
 			update_stats()
@@ -51,6 +56,7 @@ func _process(_delta: float) -> void:
 		else:
 			combo = 0
 	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.song_pos - 0.095:
+		tier_counts["Miss"] += 1
 		_spawn_tier('Miss', -1.0)
 		conductor.remove_note()
 		combo = 0
@@ -88,4 +94,5 @@ func restart_game() -> void:
 
 func end_game() -> void:
 	conductor.playing = false
+	print(tier_counts)
 	get_tree().change_scene_to_file("res://level_select/level_select.tscn")
