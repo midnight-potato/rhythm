@@ -20,7 +20,7 @@ script = ExtResource("2_850h1")
 [node name="tierLabel" type="Label" parent="."]
 material = SubResource("ShaderMaterial_xgi6i")
 offset_left = -256.0
-offset_top = -96.0
+offset_top = -90.0
 offset_right = 256.0
 text = "Perfect!"
 label_settings = SubResource("LabelSettings_j67af")
