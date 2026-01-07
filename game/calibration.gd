@@ -74,6 +74,7 @@ func _update_stats() -> void:
 func pause() -> void:
 	paused = false if paused else true
 	conductor.stream_paused = paused
+	stats['calibration'] = false
 	$pauseMenu.visible = paused
 
 func restart_game() -> void:

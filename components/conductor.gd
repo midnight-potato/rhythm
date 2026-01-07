@@ -47,7 +47,7 @@ func get_hit_diff(absolute: bool):
 
 func if_hit() -> bool:
 	if noteNodes.is_empty(): return false
-	if get_hit_diff(true) < 0.095:
+	if get_hit_diff(true) < GameState.tiers[GameState.tiers.size()-1]['threshold']:
 		return true
 	return false
 

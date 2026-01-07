@@ -59,11 +59,18 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pause()
 	if paused: return
+	if conductor.is_finished:
+		stats['finished'] = true
+		_update_stats()
+		end_game()
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
 			var hit_diff = conductor.get_hit_diff(false)
-			stats['total_offset'] += hit_diff
 			var tier := calc_score(abs(hit_diff))
+			if tier['tier'] == 'Miss':
+				_miss_note()
+				return
+			stats['total_offset'] += hit_diff
 			stats['score'] += tier['score']
 			print(tier['tier'], "!")
 			stats['combo'] += 1
@@ -73,17 +80,16 @@ func _process(_delta: float) -> void:
 			_update_stats_labels()
 			print("current score: ", stats['score'])
 			print("current combo: ", stats['combo'])
-	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.get_offset_pos() - 0.095:
-		tier_counts["Miss"] += 1
-		_spawn_tier('Miss', -1.0)
-		conductor.remove_note()
-		stats['max_combo'] = stats['combo'] if stats['combo'] > stats['max_combo'] else stats['max_combo']
-		stats['combo'] = 0
-		_update_stats_labels()
-	if conductor.is_finished:
-		stats['finished'] = true
-		_update_stats()
-		end_game()
+	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.get_offset_pos() - 0.1:
+		_miss_note()
+
+func _miss_note() -> void:
+	tier_counts["Miss"] += 1
+	_spawn_tier('Miss', -1.0)
+	conductor.remove_note()
+	stats['max_combo'] = stats['combo'] if stats['combo'] > stats['max_combo'] else stats['max_combo']
+	stats['combo'] = 0
+	_update_stats_labels()
 
 func _spawn_tier(text: String, offset: float) -> void:
 	var tier = Tier.instantiate()
