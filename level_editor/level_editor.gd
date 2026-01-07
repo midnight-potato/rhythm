@@ -2,6 +2,8 @@ extends Control
 
 const EditorNote = preload("res://level_editor/editor_note.tscn")
 
+const ZOOM = 400
+
 var bpm: int = 60
 var notes: Array[Dictionary] = []
 var play_pos := 0.0
@@ -21,7 +23,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	play_pos = $MusicPlayer.get_playback_position() + AudioServer.get_time_since_last_mix()
-	%Notes.position.x = get_viewport().get_visible_rect().size.x / 2 - play_pos * 200
+	%Notes.position.x = get_viewport().get_visible_rect().size.x / 2 - play_pos * ZOOM
 	%PlayButton.text = "▶️" if not $MusicPlayer.playing or $MusicPlayer.stream_paused else "⏸️"
 	%TitleLabel.text = "Editing level: " + level_name
 	%BPMButton.text = "Stop BPM" if is_setting_bpm else "Tap BPM"
@@ -52,7 +54,7 @@ func _add_note(beat: float):
 	notes.sort_custom(func (a, b): return a["t"] < b["t"])
 	
 	var node: Control = EditorNote.instantiate()
-	node.position.x = beat / bpm * 60 * 200
+	node.position.x = beat / bpm * 60 * ZOOM
 	node.connect("deleted", func (): return _on_note_deleted(beat))
 	%Notes.add_child(node)
 
@@ -83,7 +85,7 @@ func _on_music_dialog_file_selected(path: String) -> void:
 	$MusicPlayer.stream = stream
 	$MusicPlayer.play()
 	$MusicPlayer.stream_paused = true
-	%Notes.size.x = stream.get_length() * 200
+	%Notes.size.x = stream.get_length() * ZOOM
 	
 	var parts = path.rsplit("/", false, 1)
 	if parts.size() > 1:
