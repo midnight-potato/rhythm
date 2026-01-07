@@ -12,6 +12,7 @@ var noteNodes: Array[Node] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	remove_all_notes()
 	for item in notes:
 		var note = Note.instantiate()
 		note.deadline = item["t"] / bpm * 60
@@ -44,3 +45,9 @@ func remove_note() -> void:
 		var note = noteNodes[0]
 		note.queue_free()
 		noteNodes.pop_front()
+
+func remove_all_notes() -> void:
+	if not noteNodes.is_empty():
+		for note in noteNodes:
+			note.queue_free()
+		noteNodes.clear()

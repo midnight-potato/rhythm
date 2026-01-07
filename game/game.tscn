@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=8 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://r84aamhgpquh" path="res://menus/pause_menu.tscn" id="3_h7iqs"]
 
 [sub_resource type="Gradient" id="Gradient_l1rk1"]
 offsets = PackedFloat32Array(0.6375839, 0.66442955, 0.6912752)
@@ -69,3 +70,6 @@ label_settings = SubResource("LabelSettings_h7iqs")
 
 [node name="tierSpawn" type="Marker2D" parent="."]
 position = Vector2(0, -128)
+
+[node name="pauseMenu" parent="." instance=ExtResource("3_h7iqs")]
+visible = false

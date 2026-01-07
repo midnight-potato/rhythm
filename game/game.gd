@@ -9,6 +9,9 @@ var paused: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	paused = false
+	$pauseMenu.visible = false
+	# reading the level data
 	var reader = ZIPReader.new()
 	reader.open(GameState.selected_level)
 	var data = JSON.parse_string(reader.read_file("level.json").get_string_from_utf8())
@@ -52,7 +55,8 @@ func _process(_delta: float) -> void:
 		conductor.remove_note()
 		combo = 0
 		update_stats()
-	
+	if not conductor.playing:
+		end_game()
 	# TODO pausing and finish level
 
 func _spawn_tier(text: String, offset: float) -> void:
@@ -68,10 +72,20 @@ func calc_score(diff: float) -> Dictionary:
 			return tier
 	return {'tier': 'Miss', 'score': 0.0}
 
-func update_stats():
+func update_stats() -> void:
 	#$score.text = str(GameState.score)
 	%comboNum.text = str(combo)
 
-func pause():
+func pause() -> void:
 	paused = false if paused else true
 	conductor.stream_paused = paused
+	$pauseMenu.visible = paused
+
+func restart_game() -> void:
+	conductor.playing = false
+	conductor.remove_all_notes()
+	_ready()
+
+func end_game() -> void:
+	conductor.playing = false
+	get_tree().change_scene_to_file("res://level_select/level_select.tscn")
