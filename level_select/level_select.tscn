@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cij7fnfg7oigo"]
+[gd_scene load_steps=5 format=3 uid="uid://cij7fnfg7oigo"]
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
-[ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/end_menu.tscn" id="2_sv8in"]
+[ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
+[ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
 
 [sub_resource type="Theme" id="Theme_1wbfr"]
 default_font_size = 30
@@ -42,5 +43,36 @@ theme = SubResource("Theme_1wbfr")
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 
+[node name="calibration" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.95000005
+anchor_top = 0.089
+anchor_right = 0.95000005
+anchor_bottom = 0.089
+offset_left = -144.0
+offset_top = -0.08000183
+offset_bottom = 42.92
+theme_override_font_sizes/font_size = 25
+text = "Calibration"
+
+[node name="main_menu" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.95000005
+anchor_top = 0.089
+anchor_right = 0.95000005
+anchor_bottom = 0.089
+offset_left = -312.0
+offset_top = -0.08000183
+offset_right = -168.0
+offset_bottom = 42.92
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+
 [node name="endMenu" parent="." instance=ExtResource("2_sv8in")]
 visible = false
+
+[node name="calibrationEndMenu" parent="." instance=ExtResource("3_kxnyd")]
+visible = false
+
+[connection signal="button_up" from="CanvasLayer/calibration" to="." method="_on_calibration_button_up"]
+[connection signal="button_up" from="CanvasLayer/main_menu" to="." method="_on_main_menu_button_up"]

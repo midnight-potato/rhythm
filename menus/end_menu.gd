@@ -24,6 +24,7 @@ func set_stats(stats: Dictionary):
 		%missesAmt.text = str(stats['misses'])
 
 func _on_menu_button_button_up() -> void:
+	GameState.stats['finished'] = false
 	visible = false
 
 func _on_restart_button_button_up() -> void:

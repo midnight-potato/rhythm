@@ -8,7 +8,8 @@ var paused: bool = false
 var stats: Dictionary = {
 	'misses' = 0,
 	'total_offset' = 0.0,
-	'avg_offset' = 0.0
+	'avg_offset' = 0.0,
+	'calibration' = true
 }
 #const LEVEL = '{"bpm":60,"notes":[{"t":1,"s":1,"a":0.25},{"t":2,"s":1,"a":0.5}]}'
 
@@ -37,7 +38,7 @@ func _ready() -> void:
 	
 	stats['total_notes'] = conductor.noteNodes.size()
 	
-	_update_stats_labels()
+	_update_stats_labels(0.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -46,21 +47,22 @@ func _process(_delta: float) -> void:
 	if paused: return
 	if Input.is_action_just_pressed("hit"):
 		var hit_diff = conductor.get_hit_diff(false)
-		stats['total_offset'] += hit_diff
-		_update_stats_labels()
-		conductor.remove_note()
-	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.song_pos - 0.12:
+		if abs(hit_diff) < 0.15:
+			stats['total_offset'] += hit_diff
+			_update_stats_labels(hit_diff)
+			conductor.remove_note()
+	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.song_pos - 0.15:
 		stats["misses"] += 1
 		conductor.remove_note()
-		_update_stats_labels()
 	if not conductor.playing:
-		stats['finished'] = true
+		stats['finished'] = false
 		_update_stats()
 		end_game()
 
-func _update_stats_labels() -> void:
+func _update_stats_labels(diff: float) -> void:
 	#$score.text = str(stats['score'])
-	%offsetNum.text = str(conductor.get_hit_diff(false))
+	var s = "+" if diff > 0.0 else ""
+	%offsetNum.text = s + str(snapped(diff * 1000, 0.001))
 
 func _update_stats() -> void:
 	stats['avg_offset'] = stats['total_offset'] / (stats['total_notes'] - stats['misses'])

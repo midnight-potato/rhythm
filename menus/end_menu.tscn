@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxts30b442841"]
+[gd_scene load_steps=7 format=3 uid="uid://cmyi7gm0p3g5n"]
 
-[ext_resource type="Script" uid="uid://b1sls6bfes6t" path="res://menus/end_menu.gd" id="1_l2njh"]
+[ext_resource type="Script" uid="uid://bc3288yvaabil" path="res://menus/end_menu.gd" id="1_l2njh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpxhh"]
 font_size = 40
@@ -22,9 +22,10 @@ font_size = 40
 script = ExtResource("1_l2njh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="background" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 

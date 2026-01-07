@@ -6,8 +6,6 @@ const Note = preload("res://components/note.tscn")
 @export var notes: Array = []
 var song_pos := 0.0
 
-var score := 0
-
 var noteNodes: Array[Node] = []
 
 # Called when the node enters the scene tree for the first time.

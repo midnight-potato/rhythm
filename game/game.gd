@@ -15,7 +15,8 @@ var stats: Dictionary = {
 	'avg_offset' = 0.0,
 	'finished' = false,
 	'percentage_notes' = 0.0,
-	'percentage_score' = 0.0
+	'percentage_score' = 0.0,
+	'percentage_overall' = 0.0
 }
 #const LEVEL = '{"bpm":60,"notes":[{"t":1,"s":1,"a":0.25},{"t":2,"s":1,"a":0.5}]}'
 
@@ -56,7 +57,7 @@ func _process(_delta: float) -> void:
 	if paused: return
 	if Input.is_action_just_pressed("hit"):
 		if conductor.if_hit():
-			var hit_diff = conductor.get_hit_diff(false)
+			var hit_diff = conductor.get_hit_diff(false) + GameState.input_offset
 			stats['total_offset'] += hit_diff
 			var tier := calc_score(abs(hit_diff))
 			stats['score'] += tier['score']
@@ -105,6 +106,7 @@ func _update_stats() -> void:
 	stats['avg_offset'] = stats['total_offset'] / (stats['total_notes'] - stats['misses'])
 	stats['percentage_notes'] = (stats['total_notes'] - stats['misses']) / float(stats['total_notes'])
 	stats['percentage_score'] = stats['score'] / float(stats['total_notes'] * GameState.tiers[0]['score'])
+	stats['percentage_overall'] = stats['percentage_notes'] * 0.75 + stats['percentage_score'] * 0.25
 
 func pause() -> void:
 	paused = false if paused else true
