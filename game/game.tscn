@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=12 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://r84aamhgpquh" path="res://menus/pause_menu.tscn" id="3_h7iqs"]
+[ext_resource type="Shader" uid="uid://cg1d4athrna8l" path="res://components/tier.gdshader" id="4_4fuuu"]
 
 [sub_resource type="Gradient" id="Gradient_l1rk1"]
 offsets = PackedFloat32Array(0.6375839, 0.66442955, 0.6912752)
@@ -19,6 +20,17 @@ fill_from = Vector2(0.5, 0.5)
 font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7iqs"]
+font_size = 30
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxrkv"]
+shader = ExtResource("4_4fuuu")
+shader_parameter/current_time = 0.0
+shader_parameter/fadeout_time = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_dakft"]
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5opy"]
 font_size = 30
 
 [node name="game" type="Node2D"]
@@ -68,8 +80,33 @@ size_flags_horizontal = 4
 text = "COMBO"
 label_settings = SubResource("LabelSettings_h7iqs")
 
-[node name="tierSpawn" type="Marker2D" parent="."]
-position = Vector2(0, -128)
-
 [node name="pauseMenu" parent="." instance=ExtResource("3_h7iqs")]
 visible = false
+
+[node name="tierText" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -140.0
+offset_bottom = -140.0
+
+[node name="tierLabel" type="Label" parent="tierText"]
+material = SubResource("ShaderMaterial_dxrkv")
+layout_mode = 0
+offset_left = -256.0
+offset_top = -84.0
+offset_right = 256.0
+offset_bottom = 6.0
+text = "Perfect!"
+label_settings = SubResource("LabelSettings_dakft")
+horizontal_alignment = 1
+
+[node name="timeOffset" type="Label" parent="tierText"]
+material = SubResource("ShaderMaterial_dxrkv")
+layout_mode = 0
+offset_left = -256.0
+offset_top = -8.0
+offset_right = 256.0
+offset_bottom = 34.0
+text = "+0.001"
+label_settings = SubResource("LabelSettings_u5opy")
+horizontal_alignment = 1

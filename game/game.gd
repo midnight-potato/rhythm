@@ -82,11 +82,8 @@ func _process(_delta: float) -> void:
 		end_game()
 
 func _spawn_tier(text: String, offset: float) -> void:
-	var tier = Tier.instantiate()
-	tier.fade_time = 0.41
-	tier.travel_speed = 160.0
-	tier.set_text(text, offset)
-	$tierSpawn.add_child(tier)
+	var tween = create_tween()
+	tween.tween_property($tierText, "position:y", -200, 1.0)
 
 func calc_score(diff: float) -> Dictionary:
 	for tier in GameState.tiers:

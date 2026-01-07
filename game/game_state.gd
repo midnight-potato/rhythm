@@ -6,7 +6,8 @@ var tiers: Array[Dictionary] = [
 	_new_bracket("Perfect", 0.016, 100),
 	_new_bracket("Great", 0.037, 67),
 	_new_bracket("Good", 0.055, 33),
-	_new_bracket("Okay", 0.095, 12)
+	_new_bracket("Okay", 0.095, 12),
+	_new_bracket("Miss", 0.150, 0)
 ]
 var stats: Dictionary
 var input_offset: float = 0.0
