@@ -19,6 +19,11 @@ script = ExtResource("1_l2njh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,6 +59,7 @@ label_settings = SubResource("LabelSettings_bpxhh")
 horizontal_alignment = 1
 
 [node name="scoreAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "9999.99"
 label_settings = SubResource("LabelSettings_i5a8q")
@@ -75,6 +81,7 @@ text = "Max Combo"
 horizontal_alignment = 1
 
 [node name="mcomboAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/mcomboContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_q4aq0")
@@ -84,12 +91,13 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 
-[node name="comboLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/perfectContainer"]
+[node name="perfectLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/perfectContainer"]
 layout_mode = 2
 text = "Perfects"
 horizontal_alignment = 1
 
-[node name="comboAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/perfectContainer"]
+[node name="perfectAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/perfectContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_q4aq0")
@@ -105,6 +113,7 @@ text = "Combo"
 horizontal_alignment = 1
 
 [node name="comboAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/comboContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_q4aq0")
@@ -120,6 +129,7 @@ text = "Misses"
 horizontal_alignment = 1
 
 [node name="missesAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/missesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_q4aq0")
@@ -140,3 +150,6 @@ text = "Back to Menu"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Play Again"
+
+[connection signal="button_up" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/buttonsContainer/menuButton" to="." method="_on_menu_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/buttonsContainer/restartButton" to="." method="_on_restart_button_button_up"]

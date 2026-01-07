@@ -1,17 +1,28 @@
 extends Node2D
 
-var stats = {
-	'combo' = 0,
-	'max_combo' = 0,
-	'misses' = 0,
-	'score' = 0.0
-}
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	visible = true if 'finished' in GameState.stats and GameState.stats['finished'] else false
+	$CanvasLayer.visible = visible
+	set_stats(GameState.stats)
 
+func _process(_delta: float) -> void:
+	if visibility_changed:
+		$CanvasLayer.visible = visible
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func set_stats(stats: Dictionary):
+	if 'score' in stats:
+		%scoreAmt.text = str(stats['score'])
+	if 'max_combo' in stats:
+		%mcomboAmt.text = str(stats['max_combo'])
+	if 'perfects' in stats:
+		%perfectAmt.text = str(stats['perfects'])
+	if 'combo' in stats:
+		%comboAmt.text = str(stats['combo'])
+	if 'misses' in stats:
+		%missesAmt.text = str(stats['misses'])
+
+func _on_menu_button_button_up() -> void:
+	visible = false
+
+func _on_restart_button_button_up() -> void:
+	get_tree().change_scene_to_file("res://game/game.tscn")
