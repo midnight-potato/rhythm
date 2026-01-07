@@ -2,14 +2,19 @@ extends Node2D
 
 const LevelButton = preload("res://level_select/level_button.tscn")
 
+const LEVELS = [
+	{"name": "Level 0", "path": "res://levels/level0.zip"},
+	{"name": "Level 1", "path": "res://levels/level1.zip"}
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var button = LevelButton.instantiate()
-	button.level_name = "This is a level"
-	button.level_path = "res://levels/level0.zip"
-	button.connect("level_selected", func(): _level_selected("res://levels/level0.zip"))
-	$CanvasLayer/Panel/MarginContainer/VBoxContainer/HFlowContainer.add_child(button)
+	for level in LEVELS:
+		var button = LevelButton.instantiate()
+		button.level_name = level["name"]
+		button.level_path = level["path"]
+		button.connect("level_selected", func(): _level_selected(level["path"]))
+		$CanvasLayer/Panel/MarginContainer/VBoxContainer/HFlowContainer.add_child(button)
 
 
 func _level_selected(path: String):
