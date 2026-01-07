@@ -25,7 +25,8 @@ export default function Home() {
       "author": formData.get("author"),
       "designer": formData.get("designer"),
       "bpm": formData.get("bpm"),
-      "level": processedLevel,
+      "notes": processedLevel,
+      "music": file.name,
     }
 
     const zip = new JSZip();
