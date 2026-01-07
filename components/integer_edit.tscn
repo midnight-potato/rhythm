@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxf58f53vf1jx"]
+
+[ext_resource type="Script" uid="uid://dkm68rxod2lvy" path="res://components/integer_edit.gd" id="1_0ncwn"]
+
+[node name="IntegerEdit" type="LineEdit"]
+offset_right = 68.5625
+offset_bottom = 31.0
+script = ExtResource("1_0ncwn")
+
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]

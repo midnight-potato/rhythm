@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://giriw1bcg1ts"]
+[gd_scene load_steps=6 format=3 uid="uid://giriw1bcg1ts"]
 
 [ext_resource type="Script" uid="uid://bhwks7p2lr4sx" path="res://level_editor/level_editor.gd" id="1_7e0dv"]
+[ext_resource type="PackedScene" uid="uid://bxf58f53vf1jx" path="res://components/integer_edit.tscn" id="2_gylj0"]
+
+[sub_resource type="Theme" id="Theme_h1ywe"]
+default_font_size = 30
 
 [sub_resource type="Theme" id="Theme_7e0dv"]
 default_font_size = 40
@@ -43,12 +47,29 @@ theme_override_font_sizes/font_size = 50
 text = "Editing level: X"
 horizontal_alignment = 1
 
-[node name="BPMLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_h1ywe")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BPMLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "BPM: 120"
-horizontal_alignment = 1
+text = "BPM: "
+
+[node name="BPMValue" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("2_gylj0")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "60"
+
+[node name="SnapLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "  Beat snap: 1/"
+
+[node name="SnapValue" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("2_gylj0")]
+layout_mode = 2
+text = "4"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -61,6 +82,7 @@ layout_mode = 2
 text = "Change music"
 
 [node name="BPMButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Set BPM"
 
@@ -98,7 +120,10 @@ color = Color(0.19793725, 0.19793722, 0.19793722, 1)
 [connection signal="canceled" from="MusicDialog" to="." method="_on_music_dialog_canceled"]
 [connection signal="file_selected" from="MusicDialog" to="." method="_on_music_dialog_file_selected"]
 [connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/BPMValue" to="." method="_on_bpm_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/SnapValue" to="." method="_on_snap_value_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MusicButton" to="." method="_on_music_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BPMButton" to="." method="_on_bpm_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/ForwardButton" to="." method="_on_forward_button_pressed"]

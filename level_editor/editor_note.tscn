@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ey351k1ghany"]
+
+[ext_resource type="Texture2D" uid="uid://bkru7pmgs2i4n" path="res://assets/note.png" id="1_kcxod"]
+
+[node name="EditorNote" type="Sprite2D"]
+texture = ExtResource("1_kcxod")
+centered = false
