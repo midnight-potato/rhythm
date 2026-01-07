@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cij7fnfg7oigo"]
+[gd_scene load_steps=6 format=3 uid="uid://cij7fnfg7oigo"]
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
+[ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_kp0lh"]
 [ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
 [ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
 
@@ -34,6 +35,7 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kp0lh")
 theme_override_font_sizes/font_size = 60
 text = "Select a Level"
 
