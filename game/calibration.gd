@@ -30,8 +30,12 @@ func _ready() -> void:
 	var stream = AudioStreamMP3.new()
 	stream.data = music
 	
+	var sync_stream = AudioStreamSynchronized.new()
+	sync_stream.stream_count = 1
+	sync_stream.set_sync_stream(0, stream)
+	
 	conductor = Conductor.instantiate()
-	conductor.stream = stream
+	conductor.stream = sync_stream
 	conductor.bpm = data["bpm"]
 	conductor.notes = data["notes"]
 	add_child(conductor)

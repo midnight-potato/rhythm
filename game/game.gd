@@ -40,8 +40,12 @@ func _ready() -> void:
 	var stream = AudioStreamMP3.new()
 	stream.data = music
 	
+	var sync_stream = AudioStreamSynchronized.new()
+	sync_stream.stream_count = 1
+	sync_stream.set_sync_stream(0, stream)
+	
 	conductor = Conductor.instantiate()
-	conductor.stream = stream
+	conductor.stream = sync_stream
 	conductor.bpm = data["bpm"]
 	conductor.notes = data["notes"]
 	add_child(conductor)
@@ -76,7 +80,7 @@ func _process(_delta: float) -> void:
 		stats['max_combo'] = stats['combo'] if stats['combo'] > stats['max_combo'] else stats['max_combo']
 		stats['combo'] = 0
 		_update_stats_labels()
-	if not conductor.playing:
+	if conductor.is_finished:
 		stats['finished'] = true
 		_update_stats()
 		end_game()
