@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4wrlymgyrm41"]
+[gd_scene load_steps=5 format=3 uid="uid://4wrlymgyrm41"]
 
 [ext_resource type="Script" uid="uid://bkadrwbfgqa77" path="res://components/tier.gd" id="2_850h1"]
+[ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_xgi6i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j67af"]
 font_size = 70
@@ -13,17 +14,18 @@ script = ExtResource("2_850h1")
 
 [node name="tierLabel" type="Label" parent="."]
 offset_left = -256.0
-offset_top = -90.0
+offset_top = -80.0
 offset_right = 256.0
-text = "Perfect!"
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("2_xgi6i")
+text = "Perfect"
 label_settings = SubResource("LabelSettings_j67af")
 horizontal_alignment = 1
 
 [node name="timeOffset" type="Label" parent="."]
 offset_left = -256.0
-offset_top = -8.0
 offset_right = 256.0
-offset_bottom = 34.0
+offset_bottom = 42.0
 text = "+0.001"
 label_settings = SubResource("LabelSettings_xgi6i")
 horizontal_alignment = 1

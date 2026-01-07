@@ -21,3 +21,7 @@ func set_text(t: String, o: float) -> void:
 	var s = "+" if o > 0.0 else ""
 	var off = "" if o == -1.0 else s + str(snapped(o, 0.001))
 	$timeOffset.text = off
+
+func set_color(rgb: Color):
+	$tierLabel.label_settings.font_color = rgb
+	$timeOffset.label_settings.font_color = rgb

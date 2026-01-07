@@ -76,7 +76,7 @@ func _process(_delta: float) -> void:
 			print(tier['tier'], "!")
 			stats['combo'] += 1
 			tier_counts[tier['tier']] += 1
-			_spawn_tier(tier['tier'], hit_diff)
+			_spawn_tier(tier['tier'], hit_diff, tier['color'])
 			_spawn_hitmarker(tier['hitmarker'])
 			conductor.remove_note()
 			_update_stats_labels()
@@ -93,17 +93,18 @@ func _spawn_hitmarker(imgpath: String):
 
 func _miss_note() -> void:
 	tier_counts["Miss"] += 1
-	_spawn_tier('Miss', -1.0)
+	_spawn_tier('Miss', -1.0, GameState.tiers[GameState.size()-1]['color'])
 	conductor.remove_note()
 	stats['max_combo'] = stats['combo'] if stats['combo'] > stats['max_combo'] else stats['max_combo']
 	stats['combo'] = 0
 	_update_stats_labels()
 
-func _spawn_tier(text: String, offset: float) -> void:
+func _spawn_tier(text: String, offset: float, color: Color) -> void:
 	var tier = Tier.instantiate()
 	tier.fade_time = 0.25
 	tier.travel_dist = 120.0
 	tier.set_text(text, offset)
+	tier.set_color(color)
 	$tierSpawn.add_child(tier)
 
 func calc_score(diff: float) -> Dictionary:
