@@ -14,12 +14,18 @@ export default function Home() {
     if (!file) return;
 
     const formData = new FormData(e.target as HTMLFormElement);
+
+    const processedLevel = level.map((note) => ({
+      ...note,
+      a: note.a / 180,
+    }));
+
     const metadata = {
       "title": formData.get("title"),
       "author": formData.get("author"),
       "designer": formData.get("designer"),
       "bpm": formData.get("bpm"),
-      "level": level,
+      "level": processedLevel,
     }
 
     const zip = new JSZip();
