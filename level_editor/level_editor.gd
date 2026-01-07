@@ -59,7 +59,7 @@ func _on_javascript_load(arguments: Array):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	play_pos = $MusicPlayer.get_playback_position() + AudioServer.get_time_since_last_mix()
+	play_pos = $MusicPlayer.get_playback_position()
 	%Notes.position.x = get_viewport().get_visible_rect().size.x / 2 - play_pos * ZOOM
 	%PlayButton.text = "▶️" if not $MusicPlayer.playing or $MusicPlayer.stream_paused else "⏸️"
 	%TitleLabel.text = "Editing level: " + level_name
@@ -194,3 +194,7 @@ func _on_export_button_pressed():
 
 func _on_web_open_button_pressed() -> void:
 	_open_browser_select()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/main_menu.tscn")

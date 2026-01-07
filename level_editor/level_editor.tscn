@@ -126,6 +126,7 @@ offset_bottom = 618.0
 color = Color(0.19793725, 0.19793722, 0.19793722, 1)
 
 [node name="WebLayer" type="CanvasLayer" parent="."]
+layer = 1000
 visible = false
 
 [node name="Panel" type="Panel" parent="WebLayer"]
@@ -162,6 +163,15 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "reopen popup (you suck)"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+offset_left = 1125.0
+offset_top = 16.0
+offset_right = 1260.0
+offset_bottom = 45.0
+text = "Discard and quit"
+
 [connection signal="canceled" from="MusicDialog" to="." method="_on_music_dialog_canceled"]
 [connection signal="file_selected" from="MusicDialog" to="." method="_on_music_dialog_file_selected"]
 [connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]
@@ -174,3 +184,4 @@ text = "reopen popup (you suck)"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/ForwardButton" to="." method="_on_forward_button_pressed"]
 [connection signal="pressed" from="WebLayer/Panel/VBoxContainer/WebOpenButton" to="." method="_on_web_open_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_quit_button_pressed"]
