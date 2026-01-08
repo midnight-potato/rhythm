@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://giriw1bcg1ts"]
+[gd_scene load_steps=8 format=3 uid="uid://giriw1bcg1ts"]
 
 [ext_resource type="Script" uid="uid://bhwks7p2lr4sx" path="res://level_editor/level_editor.gd" id="1_7e0dv"]
 [ext_resource type="PackedScene" uid="uid://bxf58f53vf1jx" path="res://components/integer_edit.tscn" id="2_gylj0"]
+[ext_resource type="Texture2D" uid="uid://bud6h124ausw1" path="res://assets/separator.png" id="3_h1ywe"]
 
 [sub_resource type="Theme" id="Theme_h1ywe"]
 default_font_size = 30
@@ -153,7 +154,7 @@ theme_override_constants/separation = 40
 layout_mode = 2
 text = "You are using the web version.
 Please select a file in the popup.
-If you closed the popup, :c"
+If you closed the popup, click below."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -166,11 +167,26 @@ text = "reopen popup (you suck)"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="QuitButton" type="Button" parent="CanvasLayer"]
-offset_left = 1125.0
-offset_top = 16.0
-offset_right = 1260.0
-offset_bottom = 45.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 18.0
+offset_right = -35.0
+offset_bottom = 47.0
+grow_horizontal = 0
 text = "Discard and quit"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(0, 518)
+texture = ExtResource("3_h1ywe")
 
 [connection signal="canceled" from="MusicDialog" to="." method="_on_music_dialog_canceled"]
 [connection signal="file_selected" from="MusicDialog" to="." method="_on_music_dialog_file_selected"]

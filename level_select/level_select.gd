@@ -3,8 +3,8 @@ extends Node2D
 const LevelButton = preload("res://level_select/level_button.tscn")
 
 var LEVELS = [
-	_new_level("Level 0", "res://levels/level0.zip"),
-	_new_level("Level 1", "res://levels/level1.zip")
+	_new_level("Never Gonna Give You Up", "res://levels/rick.zip"),
+	#_new_level("Level 1", "res://levels/level1.zip")
 ]
 
 # Called when the node enters the scene tree for the first time.

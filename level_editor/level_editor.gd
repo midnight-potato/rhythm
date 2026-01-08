@@ -5,7 +5,7 @@ const EditorNote = preload("res://level_editor/editor_note.tscn")
 const ZOOM = 400
 
 var bpm: int = 60
-var notes: Array[Dictionary] = []
+var notes: Array = []
 var play_pos := 0.0
 var music_path: String
 var level_name := "unknown"
@@ -32,7 +32,7 @@ func _open_browser_select():
 	var document = JavaScriptBridge.get_interface("document")
 	var input = document.createElement('input')
 	input.type = "file"
-	input.accept = "audio/mp3,audio/mpeg"
+	input.accept = "audio/mp3,audio/mpeg,application/zip"
 	input.onchange = js_callback
 	input.click()
 
@@ -89,7 +89,12 @@ func _add_note(beat: float):
 	var note = { "t": beat, "a": fmod(beat,snap)/snap*2, "s": 1000 }
 	notes.append(note)
 	notes.sort_custom(func (a, b): return a["t"] < b["t"])
-	
+
+	_add_note_node(note)
+
+
+func _add_note_node(note: Dictionary):
+	var beat = note["t"]
 	var node: Control = EditorNote.instantiate()
 	node.position.x = beat / bpm * 60 * ZOOM
 	node.connect("deleted", func (): return _on_note_deleted(beat))
@@ -114,7 +119,22 @@ func _on_music_dialog_canceled() -> void:
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
 
 
-func _on_music_dialog_file_selected(path: String) -> void:
+func _on_music_dialog_file_selected(path: String):
+	# check if it's a game zip file
+	var reader = ZIPReader.new()
+	var error = reader.open(path)
+	if error == OK:
+		_on_zip_file_opened(reader)
+		return
+	
+	_load_stream(path)
+	
+	var parts = path.rsplit("/", false, 1)
+	if parts.size() > 1:
+		level_name = parts[1]
+
+
+func _load_stream(path: String):
 	music_path = path
 	var stream = AudioStreamMP3.load_from_file(path)
 	if not stream:
@@ -127,10 +147,22 @@ func _on_music_dialog_file_selected(path: String) -> void:
 	$MusicPlayer.play()
 	$MusicPlayer.stream_paused = true
 	%Notes.size.x = stream.get_length() * ZOOM
+
+
+func _on_zip_file_opened(reader: ZIPReader):
+	var level_data = JSON.parse_string(reader.read_file("level.json").get_string_from_utf8())
+	var music_data = reader.read_file(level_data["music"])
 	
-	var parts = path.rsplit("/", false, 1)
-	if parts.size() > 1:
-		level_name = parts[1]
+	var file = FileAccess.open("user://playing.mp3", FileAccess.WRITE)
+	file.store_buffer(music_data)
+	
+	level_name = level_data["music"]
+	bpm = int(level_data["bpm"])
+	_load_stream("user://playing.mp3")
+	notes = level_data["notes"]
+	
+	for note in notes:
+		_add_note_node(note)
 
 
 func _on_music_player_finished() -> void:
