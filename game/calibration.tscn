@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://da8an1adudxok"]
+[gd_scene load_steps=11 format=3 uid="uid://da8an1adudxok"]
 
 [ext_resource type="Script" uid="uid://cuofvll3bua4" path="res://game/calibration.gd" id="1_c02ev"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_um81s"]
 [ext_resource type="StyleBox" uid="uid://kaxccygovg31" path="res://styles/style_box_primary.tres" id="3_kl1nk"]
 [ext_resource type="PackedScene" uid="uid://r84aamhgpquh" path="res://menus/pause_menu.tscn" id="3_sg8j0"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="3_um81s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg8j0"]
+bg_color = Color(0.54, 0.5022, 0.42660004, 1)
 
 [sub_resource type="Gradient" id="Gradient_l1rk1"]
 offsets = PackedFloat32Array(0.6375839, 0.66442955, 0.6912752)
@@ -28,6 +31,13 @@ font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [node name="calibration" type="Node2D"]
 script = ExtResource("1_c02ev")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = -3184.0
+offset_top = -2936.0
+offset_right = 3152.0
+offset_bottom = 3040.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sg8j0")
 
 [node name="target" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_vasa2")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=12 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
 [ext_resource type="Texture2D" uid="uid://qqs72yp0tbb8" path="res://assets/target.png" id="2_4fuuu"]
@@ -7,9 +7,12 @@
 [ext_resource type="StyleBox" uid="uid://kaxccygovg31" path="res://styles/style_box_primary.tres" id="4_dakft"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="4_dxrkv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dakft"]
+bg_color = Color(0.54, 0.5022, 0.42660004, 1)
+
 [sub_resource type="Gradient" id="Gradient_l1rk1"]
 offsets = PackedFloat32Array(0.6375839, 0.66442955, 0.6912752)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.95686275, 0.90588236, 0.56078434, 0, 0.95686275, 0.90588236, 0.56078434, 1, 0.95686275, 0.90588236, 0.56078434, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vasa2"]
 gradient = SubResource("Gradient_l1rk1")
@@ -30,6 +33,13 @@ font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 script = ExtResource("1_m637p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = -3184.0
+offset_top = -2936.0
+offset_right = 3152.0
+offset_bottom = 3040.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dakft")
 
 [node name="targetRing" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_vasa2")
