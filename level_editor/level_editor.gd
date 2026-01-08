@@ -157,7 +157,7 @@ func _on_zip_file_opened(reader: ZIPReader):
 	file.store_buffer(music_data)
 	
 	level_name = level_data["music"]
-	bpm = int(level_data["bpm"])
+	set_bpm(int(level_data["bpm"]))
 	_load_stream("user://playing.mp3")
 	notes = level_data["notes"]
 	

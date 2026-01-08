@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 		song_pos = get_playback_position()
 
 func get_offset_pos() -> float:
-	return song_pos + GameState.input_offset
+	return song_pos - GameState.input_offset
 
 func get_hit_diff(absolute: bool):
 	if noteNodes.is_empty(): return 0.0

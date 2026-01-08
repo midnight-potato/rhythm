@@ -33,7 +33,6 @@ func _ready() -> void:
 	reader.open(GameState.selected_level)
 	var data = JSON.parse_string(reader.read_file("level.json").get_string_from_utf8())
 	var bpm = data["bpm"]
-	var start = Time.get_ticks_msec()
 	
 	# music...
 	var music_name = data["music"]
