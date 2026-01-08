@@ -53,7 +53,7 @@ theme_override_constants/separation = 0
 
 [node name="offsetLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/offsetContainer"]
 layout_mode = 2
-text = "Average Offset:"
+text = "New Input Offset:"
 label_settings = SubResource("LabelSettings_bpxhh")
 horizontal_alignment = 1
 

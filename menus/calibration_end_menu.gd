@@ -11,7 +11,8 @@ func _process(_delta: float) -> void:
 
 func set_stats(stats: Dictionary):
 	if 'avg_offset' in stats:
-		%offsetAmt.text = str(snapped(stats['avg_offset'] * 1000, 0.001))
+		var s = "" if stats['avg_offset'] > 0.0 else "+"
+		%offsetAmt.text = s + str(snapped(stats['avg_offset'] * -1000, 0.001))
 
 func _on_menu_button_button_up() -> void:
 	GameState.stats['calibration'] = false
