@@ -1,23 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmyi7gm0p3g5n"]
+[gd_scene load_steps=15 format=3 uid="uid://cmyi7gm0p3g5n"]
 
 [ext_resource type="Script" uid="uid://bc3288yvaabil" path="res://menus/end_menu.gd" id="1_l2njh"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_bpxhh"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_bpxhh"]
-font_size = 40
+[ext_resource type="StyleBox" uid="uid://daan5wnbck2np" path="res://styles/style_box_bgimgoverlay.tres" id="2_h5nax"]
+[ext_resource type="Theme" uid="uid://bow1via2pq7jw" path="res://styles/theme.tres" id="2_q4aq0"]
+[ext_resource type="StyleBox" uid="uid://2lwsuoxnt6ca" path="res://styles/style_box_title.tres" id="4_h5nax"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i5a8q"]
 font_size = 100
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l2njh"]
 line_spacing = -20.0
 font_size = 30
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [sub_resource type="Theme" id="Theme_l2njh"]
 default_font_size = 26
 
+[sub_resource type="LabelSettings" id="LabelSettings_esnle"]
+font_size = 26
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_q4aq0"]
 font_size = 40
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l41w8"]
+font_size = 26
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_duwjq"]
+font_size = 26
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f5mg4"]
+font_size = 26
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpxhh"]
+font_size = 40
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [node name="endMenu" type="Node2D"]
 script = ExtResource("1_l2njh")
@@ -29,6 +52,7 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme_override_styles/panel = ExtResource("2_h5nax")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 8
@@ -36,17 +60,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -356.0
-offset_top = -225.0
-offset_right = 360.0
-offset_bottom = 224.0
+offset_left = -360.0
+offset_top = -244.0
+offset_right = 368.0
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_q4aq0")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 40
 
@@ -57,12 +82,6 @@ theme_override_constants/separation = 20
 [node name="scoreContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = -6
-
-[node name="scoreLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer"]
-layout_mode = 2
-text = "Your Score:"
-label_settings = SubResource("LabelSettings_bpxhh")
-horizontal_alignment = 1
 
 [node name="scoreAmtContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/scoreContainer"]
 layout_mode = 2
@@ -99,6 +118,7 @@ layout_mode = 2
 [node name="mcomboLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/mcomboContainer"]
 layout_mode = 2
 text = "Max Combo"
+label_settings = SubResource("LabelSettings_esnle")
 horizontal_alignment = 1
 
 [node name="mcomboAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/mcomboContainer"]
@@ -116,6 +136,7 @@ layout_mode = 2
 [node name="perfectLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/perfectContainer"]
 layout_mode = 2
 text = "Perfects"
+label_settings = SubResource("LabelSettings_l41w8")
 horizontal_alignment = 1
 
 [node name="perfectAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/perfectContainer"]
@@ -133,6 +154,7 @@ layout_mode = 2
 [node name="comboLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/comboContainer"]
 layout_mode = 2
 text = "Combo"
+label_settings = SubResource("LabelSettings_duwjq")
 horizontal_alignment = 1
 
 [node name="comboAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/comboContainer"]
@@ -150,6 +172,7 @@ layout_mode = 2
 [node name="missesLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/missesContainer"]
 layout_mode = 2
 text = "Misses"
+label_settings = SubResource("LabelSettings_f5mg4")
 horizontal_alignment = 1
 
 [node name="missesAmt" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/statsContainer/missesContainer"]
@@ -168,13 +191,28 @@ theme_override_constants/separation = 40
 
 [node name="menuButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/buttonsContainer"]
 layout_mode = 2
+theme = ExtResource("2_q4aq0")
 theme_override_font_sizes/font_size = 40
-text = "Back to Menu"
+text = "  Back to Menu  "
 
 [node name="restartButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/buttonsContainer"]
 layout_mode = 2
+theme = ExtResource("2_q4aq0")
 theme_override_font_sizes/font_size = 40
-text = "Play Again"
+text = "  Play Again  "
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 600.0
+offset_top = 296.0
+offset_right = 1328.0
+offset_bottom = 384.0
+theme_override_styles/panel = ExtResource("4_h5nax")
+
+[node name="scoreLabel" type="Label" parent="CanvasLayer/PanelContainer2"]
+layout_mode = 2
+text = "Your Score:"
+label_settings = SubResource("LabelSettings_bpxhh")
+horizontal_alignment = 1
 
 [connection signal="button_up" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/buttonsContainer/menuButton" to="." method="_on_menu_button_button_up"]
 [connection signal="button_up" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/buttonsContainer/restartButton" to="." method="_on_restart_button_button_up"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 const LevelButton = preload("res://level_select/level_button.tscn")
+const theme = preload("res://styles/theme.tres")
 
 var LEVELS = [
 	_new_level("Never Gonna Give You Up", "res://levels/rick.zip"),
@@ -11,9 +12,10 @@ var LEVELS = [
 func _ready() -> void:
 	for level in LEVELS:
 		var button = LevelButton.instantiate()
-		button.level_name = level["name"]
+		button.level_name = "  " + level["name"] + "  "
 		button.level_path = level["path"]
 		button.connect("level_selected", func(): _level_selected(level["path"]))
+		#button.theme = theme
 		$CanvasLayer/Panel/MarginContainer/VBoxContainer/HFlowContainer.add_child(button)
 
 func _level_selected(path: String):
