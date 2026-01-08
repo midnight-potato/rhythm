@@ -95,20 +95,20 @@ theme_override_constants/separation = 20
 [node name="calibration" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_4a7ur")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 38
 button_mask = 3
 text = "  Calibration  "
 
 [node name="load_custom" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_4a7ur")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 38
 text = "  Load Custom Level  "
 
 [node name="main_menu" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_4a7ur")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 38
 text = "  Main Menu  "
 
 [node name="endMenu" parent="." instance=ExtResource("2_sv8in")]
