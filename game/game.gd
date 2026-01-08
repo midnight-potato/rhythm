@@ -69,7 +69,7 @@ func _process(_delta: float) -> void:
 			var hit_diff = conductor.get_hit_diff(false)
 			var tier := calc_score(abs(hit_diff))
 			if tier['tier'] == 'Miss':
-				_miss_note()
+				_miss_note(true)
 				return
 			stats['total_offset'] += hit_diff
 			stats['score'] += tier['score']
@@ -83,7 +83,7 @@ func _process(_delta: float) -> void:
 			print("current score: ", stats['score'])
 			print("current combo: ", stats['combo'])
 	elif conductor.noteNodes.size() > 0 and conductor.noteNodes[0].deadline < conductor.get_offset_pos() - 0.1:
-		_miss_note()
+		_miss_note(false)
 
 func _spawn_hitmarker(imgpath: String):
 	var hitm = Hitmarker.instantiate()
@@ -91,9 +91,11 @@ func _spawn_hitmarker(imgpath: String):
 	hitm.global_position = conductor.noteNodes[0].get_hitmarker_pos()
 	add_child(hitm)
 
-func _miss_note() -> void:
+func _miss_note(show_hitmark: bool) -> void:
 	tier_counts["Miss"] += 1
-	_spawn_tier('Miss', -1.0, GameState.tiers[GameState.size()-1]['color'])
+	_spawn_tier('Miss', -1.0, GameState.tiers[GameState.tiers.size()-1]['color'])
+	if show_hitmark:
+		_spawn_hitmarker(GameState.tiers[GameState.tiers.size()-1]['hitmarker'])
 	conductor.remove_note()
 	stats['max_combo'] = stats['combo'] if stats['combo'] > stats['max_combo'] else stats['max_combo']
 	stats['combo'] = 0

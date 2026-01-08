@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_kp0lh"]
-[ext_resource type="Texture2D" uid="uid://07d4xjrvqglw" path="res://assets/potato2-bg.png" id="2_mtmfa"]
-[ext_resource type="PackedScene" path="res://menus/end_menu.tscn" id="2_sv8in"]
-[ext_resource type="PackedScene" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
+[ext_resource type="Texture2D" uid="uid://dk3gtgii4q538" path="res://assets/manypotatoes.png" id="2_mtmfa"]
+[ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
+[ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
 
 [sub_resource type="Theme" id="Theme_1wbfr"]
 default_font_size = 30
