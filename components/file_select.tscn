@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cidg6j0doi1cf"]
+
+[ext_resource type="Script" uid="uid://0mc0d7dni5yb" path="res://components/file_select.gd" id="1_ftb5f"]
+
+[sub_resource type="Theme" id="Theme_cj5va"]
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_8vl7k"]
+default_font_size = 30
+
+[node name="FileSelect" type="Node"]
+script = ExtResource("1_ftb5f")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WebPanel" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_cj5va")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WebPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -61.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/WebPanel/VBoxContainer"]
+layout_mode = 2
+text = "Please choose a file."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WebPanel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_8vl7k")
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="OpenButton" type="Button" parent="CanvasLayer/WebPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Open dialog"
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/WebPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="CanvasLayer/WebPanel/VBoxContainer/HBoxContainer/OpenButton" to="." method="_on_open_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/WebPanel/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

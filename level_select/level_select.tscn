@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cij7fnfg7oigo"]
+[gd_scene load_steps=9 format=3 uid="uid://cij7fnfg7oigo"]
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_kp0lh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
 [ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
 [ext_resource type="PackedScene" uid="uid://b5fos8i20l58o" path="res://menus/calibration_set_menu.tscn" id="6_lqw5f"]
+[ext_resource type="PackedScene" uid="uid://cidg6j0doi1cf" path="res://components/file_select.tscn" id="7_mgq0h"]
 
 [sub_resource type="Theme" id="Theme_1wbfr"]
 default_font_size = 30
@@ -69,15 +70,28 @@ theme_override_font_sizes/font_size = 25
 button_mask = 3
 text = "Calibration"
 
+[node name="load_custom" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.95000005
+anchor_top = 0.089
+anchor_right = 0.95000005
+anchor_bottom = 0.089
+offset_left = -343.0
+offset_top = -0.08000183
+offset_right = -177.0
+offset_bottom = 42.92
+theme_override_font_sizes/font_size = 25
+text = "Load Custom"
+
 [node name="main_menu" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.95000005
 anchor_top = 0.089
 anchor_right = 0.95000005
 anchor_bottom = 0.089
-offset_left = -312.0
+offset_left = -518.0
 offset_top = -0.08000183
-offset_right = -168.0
+offset_right = -374.0
 offset_bottom = 42.92
 theme_override_font_sizes/font_size = 25
 text = "Main Menu"
@@ -91,5 +105,9 @@ visible = false
 [node name="calibrationSetMenu" parent="." instance=ExtResource("6_lqw5f")]
 visible = false
 
+[node name="CustomFileSelect" parent="." instance=ExtResource("7_mgq0h")]
+
 [connection signal="button_down" from="CanvasLayer/calibration" to="." method="_on_calibration_button_down"]
+[connection signal="pressed" from="CanvasLayer/load_custom" to="." method="_on_load_custom_pressed"]
 [connection signal="button_up" from="CanvasLayer/main_menu" to="." method="_on_main_menu_button_up"]
+[connection signal="file_selected" from="CustomFileSelect" to="." method="_on_custom_file_selected"]

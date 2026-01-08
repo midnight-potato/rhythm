@@ -36,3 +36,12 @@ func _on_calibration_button_down() -> void:
 
 func _on_main_menu_button_up() -> void:
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
+
+
+func _on_load_custom_pressed() -> void:
+	$CustomFileSelect.select()
+
+
+func _on_custom_file_selected(path: String) -> void:
+	GameState.selected_level = path
+	get_tree().change_scene_to_file("res://game/game.tscn")
