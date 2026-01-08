@@ -27,8 +27,7 @@ func _ready() -> void:
 	# music...
 	var music_name = data["music"]
 	var music = reader.read_file(music_name)
-	var stream = AudioStreamMP3.new()
-	stream.data = music
+	var stream = AudioStreamWAV.load_from_buffer(music)
 	
 	var sync_stream = AudioStreamSynchronized.new()
 	sync_stream.stream_count = 1

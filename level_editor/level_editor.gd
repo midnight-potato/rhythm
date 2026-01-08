@@ -32,7 +32,7 @@ func _open_browser_select():
 	var document = JavaScriptBridge.get_interface("document")
 	var input = document.createElement('input')
 	input.type = "file"
-	input.accept = "audio/mp3,audio/mpeg,application/zip"
+	input.accept = "audio/vnd.wav,audio/vnd.wave,audio/wave,application/zip"
 	input.onchange = js_callback
 	input.click()
 
@@ -49,11 +49,11 @@ func _on_javascript_file_change(arguments: Array):
 func _on_javascript_load(arguments: Array):
 	var data = JavaScriptBridge.js_buffer_to_packed_byte_array(arguments[0].target.result)
 
-	var file = FileAccess.open("user://music.mp3", FileAccess.WRITE)
+	var file = FileAccess.open("user://music.wav", FileAccess.WRITE)
 	file.store_buffer(data)
 	file.close()
 
-	_on_music_dialog_file_selected("user://music.mp3")
+	_on_music_dialog_file_selected("user://music.wav")
 	$WebLayer.visible = false
 
 
@@ -136,7 +136,7 @@ func _on_music_dialog_file_selected(path: String):
 
 func _load_stream(path: String):
 	music_path = path
-	var stream = AudioStreamMP3.load_from_file(path)
+	var stream = AudioStreamWAV.load_from_file(path)
 	if not stream:
 		get_tree().reload_current_scene()
 		return
@@ -153,12 +153,12 @@ func _on_zip_file_opened(reader: ZIPReader):
 	var level_data = JSON.parse_string(reader.read_file("level.json").get_string_from_utf8())
 	var music_data = reader.read_file(level_data["music"])
 	
-	var file = FileAccess.open("user://playing.mp3", FileAccess.WRITE)
+	var file = FileAccess.open("user://playing.wav", FileAccess.WRITE)
 	file.store_buffer(music_data)
 	
 	level_name = level_data["music"]
 	set_bpm(int(level_data["bpm"]))
-	_load_stream("user://playing.mp3")
+	_load_stream("user://playing.wav")
 	notes = level_data["notes"]
 	
 	for note in notes:
@@ -207,12 +207,12 @@ func _on_export_button_pressed():
 	if err != OK:
 		return
 	
-	var level_data = JSON.stringify({"bpm": bpm, "notes": notes, "music": "music.mp3"})
+	var level_data = JSON.stringify({"bpm": bpm, "notes": notes, "music": "music.wav"})
 	writer.start_file("level.json")
 	writer.write_file(level_data.to_utf8_buffer())
 	writer.close_file()
 	
-	writer.start_file("music.mp3")
+	writer.start_file("music.wav")
 	writer.write_file(FileAccess.get_file_as_bytes(music_path))
 	writer.close_file()
 
