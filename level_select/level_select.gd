@@ -26,10 +26,13 @@ func _new_level(n: String, p: String) -> Dictionary:
 		'path': p
 	}
 
-# can remove later if needed
-func _on_calibration_button_up() -> void:
-	GameState.selected_level = 'res://levels/calibration.zip'
-	get_tree().change_scene_to_file("res://game/calibration.tscn")
+func _on_calibration_button_down() -> void:
+	print('test')
+	if Input.is_action_pressed("right_click"):
+		$calibrationSetMenu.visible = true
+	else:
+		GameState.selected_level = 'res://levels/calibration.zip'
+		get_tree().change_scene_to_file("res://game/calibration.tscn")
 
 func _on_main_menu_button_up() -> void:
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")

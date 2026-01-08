@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cij7fnfg7oigo"]
+[gd_scene load_steps=8 format=3 uid="uid://cij7fnfg7oigo"]
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_kp0lh"]
 [ext_resource type="Texture2D" uid="uid://dk3gtgii4q538" path="res://assets/manypotatoes.png" id="2_mtmfa"]
 [ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
 [ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
+[ext_resource type="PackedScene" uid="uid://b5fos8i20l58o" path="res://menus/calibration_set_menu.tscn" id="6_lqw5f"]
 
 [sub_resource type="Theme" id="Theme_1wbfr"]
 default_font_size = 30
@@ -65,6 +66,7 @@ offset_left = -144.0
 offset_top = -0.08000183
 offset_bottom = 42.92
 theme_override_font_sizes/font_size = 25
+button_mask = 3
 text = "Calibration"
 
 [node name="main_menu" type="Button" parent="CanvasLayer"]
@@ -86,5 +88,8 @@ visible = false
 [node name="calibrationEndMenu" parent="." instance=ExtResource("3_kxnyd")]
 visible = false
 
-[connection signal="button_up" from="CanvasLayer/calibration" to="." method="_on_calibration_button_up"]
+[node name="calibrationSetMenu" parent="." instance=ExtResource("6_lqw5f")]
+visible = false
+
+[connection signal="button_down" from="CanvasLayer/calibration" to="." method="_on_calibration_button_down"]
 [connection signal="button_up" from="CanvasLayer/main_menu" to="." method="_on_main_menu_button_up"]
