@@ -4,7 +4,7 @@ const LevelButton = preload("res://level_select/level_button.tscn")
 
 var LEVELS = [
 	_new_level("Never Gonna Give You Up", "res://levels/rick.zip"),
-	#_new_level("Level 1", "res://levels/level1.zip")
+	_new_level("Dance of the Sugarplum Fairy", "res://levels/sugar.zip")
 ]
 
 # Called when the node enters the scene tree for the first time.
