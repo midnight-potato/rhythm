@@ -15,6 +15,8 @@ var stream_length := 0.0
 		stream_path = new_path
 		_update_preview()
 
+var image_max_width: int = 500
+
 
 func _ready():
 	voice_preview_generator = preload("res://addons/audio_preview/voice_preview_generator.tscn").instantiate()
@@ -34,9 +36,10 @@ func _update_preview():
 		texture = null
 		return
 
-	stream = load(stream_path)
+	#stream = load(stream_path)
+	stream = AudioStreamWAV.load_from_file(stream_path)
 	stream_length = stream.get_length() if stream else 0.0
-	voice_preview_generator.generate_preview(stream)
+	voice_preview_generator.generate_preview(stream, image_max_width)
 	emit_signal("generation_started")
 
 func _on_generation_progress(normalized_progress: float):
@@ -45,8 +48,3 @@ func _on_generation_progress(normalized_progress: float):
 func _on_texture_ready(image_texture):
 	texture = image_texture
 	emit_signal("generation_completed")
-
-
-
-
-

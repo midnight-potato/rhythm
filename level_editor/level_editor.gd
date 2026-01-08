@@ -61,6 +61,7 @@ func _on_javascript_load(arguments: Array):
 func _process(delta: float) -> void:
 	play_pos = $MusicPlayer.get_playback_position()
 	%Notes.position.x = get_viewport().get_visible_rect().size.x / 2 - play_pos * ZOOM
+	$Waveform.position.x = get_viewport().get_visible_rect().size.x / 2 - play_pos * ZOOM
 	%PlayButton.text = "▶️" if not $MusicPlayer.playing or $MusicPlayer.stream_paused else "⏸️"
 	%TitleLabel.text = "Editing level: " + level_name
 	%BPMButton.text = "Stop BPM" if is_setting_bpm else "Tap BPM"
@@ -147,6 +148,10 @@ func _load_stream(path: String):
 	$MusicPlayer.play()
 	$MusicPlayer.stream_paused = true
 	%Notes.size.x = stream.get_length() * ZOOM
+	$Waveform.size.x = stream.get_length() * ZOOM
+	$Waveform.image_max_width = 2000
+	$Waveform.stream_path = path
+	print("stream path is ", $Waveform.stream_path)
 
 
 func _on_zip_file_opened(reader: ZIPReader):
