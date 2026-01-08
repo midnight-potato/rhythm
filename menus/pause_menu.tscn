@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://r84aamhgpquh"]
+[gd_scene load_steps=4 format=3 uid="uid://r84aamhgpquh"]
 
 [ext_resource type="Script" uid="uid://bb1g3j3dy6g0r" path="res://menus/pause_menu.gd" id="1_s0u37"]
+[ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_p1qj3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d8v8v"]
 font_size = 70
@@ -42,6 +43,7 @@ theme_override_constants/separation = 20
 
 [node name="pausedLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p1qj3")
 text = "Paused"
 label_settings = SubResource("LabelSettings_d8v8v")
 horizontal_alignment = 1
