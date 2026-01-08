@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://da8an1adudxok"]
+[gd_scene load_steps=10 format=3 uid="uid://da8an1adudxok"]
 
 [ext_resource type="Script" uid="uid://cuofvll3bua4" path="res://game/calibration.gd" id="1_c02ev"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_um81s"]
+[ext_resource type="StyleBox" uid="uid://kaxccygovg31" path="res://styles/style_box_primary.tres" id="3_kl1nk"]
 [ext_resource type="PackedScene" uid="uid://r84aamhgpquh" path="res://menus/pause_menu.tscn" id="3_sg8j0"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="3_um81s"]
 
@@ -18,15 +19,15 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vasa2"]
 font_size = 60
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7iqs"]
 line_spacing = -30.0
 font_size = 30
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [node name="calibration" type="Node2D"]
 script = ExtResource("1_c02ev")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="target" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_vasa2")
@@ -36,15 +37,11 @@ scale = Vector2(0.4439216, 0.4439216)
 texture = ExtResource("2_um81s")
 
 [node name="comboContainer" type="PanelContainer" parent="."]
-anchors_preset = -1
-anchor_left = -0.45000002
-anchor_top = -0.411
-anchor_right = -0.45000002
-anchor_bottom = -0.411
-offset_left = -576.0
-offset_top = -296.0
-offset_right = -386.0
-offset_bottom = -213.0
+offset_left = -896.0
+offset_top = -480.0
+offset_right = -705.0
+offset_bottom = -394.0
+theme_override_styles/panel = ExtResource("3_kl1nk")
 
 [node name="MarginContainer" type="MarginContainer" parent="comboContainer"]
 layout_mode = 2
@@ -77,3 +74,5 @@ position = Vector2(0, -128)
 
 [node name="pauseMenu" parent="." instance=ExtResource("3_sg8j0")]
 visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]

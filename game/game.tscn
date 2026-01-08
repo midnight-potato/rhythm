@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1axwodrlq8gi"]
+[gd_scene load_steps=11 format=3 uid="uid://d1axwodrlq8gi"]
 
 [ext_resource type="Script" uid="uid://bd7vimvyboyj3" path="res://game/game.gd" id="1_m637p"]
 [ext_resource type="Texture2D" uid="uid://qqs72yp0tbb8" path="res://assets/target.png" id="2_4fuuu"]
 [ext_resource type="Texture2D" uid="uid://blgltfdstr4o7" path="res://assets/potato.png" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://r84aamhgpquh" path="res://menus/pause_menu.tscn" id="3_h7iqs"]
+[ext_resource type="StyleBox" uid="uid://kaxccygovg31" path="res://styles/style_box_primary.tres" id="4_dakft"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="4_dxrkv"]
 
 [sub_resource type="Gradient" id="Gradient_l1rk1"]
@@ -19,9 +20,11 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vasa2"]
 font_size = 60
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7iqs"]
 font_size = 30
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_m637p")
@@ -48,10 +51,11 @@ anchor_left = -0.45000002
 anchor_top = -0.411
 anchor_right = -0.45000002
 anchor_bottom = -0.411
-offset_left = -576.0
-offset_top = -296.0
-offset_right = -432.0
-offset_bottom = -174.0
+offset_left = -896.0
+offset_top = -480.0
+offset_right = -752.0
+offset_bottom = -358.0
+theme_override_styles/panel = ExtResource("4_dakft")
 
 [node name="MarginContainer" type="MarginContainer" parent="comboContainer"]
 layout_mode = 2

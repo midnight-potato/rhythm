@@ -23,6 +23,7 @@ font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 script = ExtResource("1_kpdw4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="background" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 15

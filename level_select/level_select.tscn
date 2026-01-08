@@ -1,12 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://cij7fnfg7oigo"]
+[gd_scene load_steps=13 format=3 uid="uid://cij7fnfg7oigo"]
 
 [ext_resource type="Script" uid="uid://ctpb2a2b5t3ln" path="res://level_select/level_select.gd" id="1_l7jsa"]
 [ext_resource type="FontFile" uid="uid://mmt3ntbg5e3r" path="res://assets/SpaceGrotesk-Bold.ttf" id="2_kp0lh"]
 [ext_resource type="Texture2D" uid="uid://dk3gtgii4q538" path="res://assets/manypotatoes.png" id="2_mtmfa"]
 [ext_resource type="PackedScene" uid="uid://cmyi7gm0p3g5n" path="res://menus/end_menu.tscn" id="2_sv8in"]
+[ext_resource type="StyleBox" uid="uid://daan5wnbck2np" path="res://styles/style_box_bgimgoverlay.tres" id="3_ad3wc"]
 [ext_resource type="PackedScene" uid="uid://bxts30b442841" path="res://menus/calibration_end_menu.tscn" id="3_kxnyd"]
+[ext_resource type="StyleBox" uid="uid://kaxccygovg31" path="res://styles/style_box_primary.tres" id="5_16arb"]
+[ext_resource type="Theme" uid="uid://bow1via2pq7jw" path="res://styles/theme.tres" id="6_4a7ur"]
 [ext_resource type="PackedScene" uid="uid://b5fos8i20l58o" path="res://menus/calibration_set_menu.tscn" id="6_lqw5f"]
 [ext_resource type="PackedScene" uid="uid://cidg6j0doi1cf" path="res://components/file_select.tscn" id="7_mgq0h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqi8v"]
+font_size = 70
+font_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [sub_resource type="Theme" id="Theme_1wbfr"]
 default_font_size = 30
@@ -32,12 +39,24 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_mtmfa")
 
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_ad3wc")
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 65
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
@@ -47,9 +66,13 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("2_kp0lh")
 theme_override_font_sizes/font_size = 60
-text = "Select a Level"
+theme_override_styles/normal = ExtResource("5_16arb")
+theme_override_styles/focus = ExtResource("5_16arb")
+text = "  Select a Level  "
+label_settings = SubResource("LabelSettings_yqi8v")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -57,44 +80,36 @@ theme = SubResource("Theme_1wbfr")
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 
-[node name="calibration" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.95000005
-anchor_top = 0.089
-anchor_right = 0.95000005
-anchor_bottom = 0.089
-offset_left = -144.0
-offset_top = -0.08000183
-offset_bottom = 42.92
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -664.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = 104.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="calibration" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4a7ur")
 theme_override_font_sizes/font_size = 25
 button_mask = 3
-text = "Calibration"
+text = "  Calibration  "
 
-[node name="load_custom" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.95000005
-anchor_top = 0.089
-anchor_right = 0.95000005
-anchor_bottom = 0.089
-offset_left = -343.0
-offset_top = -0.08000183
-offset_right = -177.0
-offset_bottom = 42.92
+[node name="load_custom" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4a7ur")
 theme_override_font_sizes/font_size = 25
-text = "Load Custom"
+text = "  Load Custom Level  "
 
-[node name="main_menu" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.95000005
-anchor_top = 0.089
-anchor_right = 0.95000005
-anchor_bottom = 0.089
-offset_left = -518.0
-offset_top = -0.08000183
-offset_right = -374.0
-offset_bottom = 42.92
+[node name="main_menu" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4a7ur")
 theme_override_font_sizes/font_size = 25
-text = "Main Menu"
+text = "  Main Menu  "
 
 [node name="endMenu" parent="." instance=ExtResource("2_sv8in")]
 visible = false
@@ -107,7 +122,7 @@ visible = false
 
 [node name="CustomFileSelect" parent="." instance=ExtResource("7_mgq0h")]
 
-[connection signal="button_down" from="CanvasLayer/calibration" to="." method="_on_calibration_button_down"]
-[connection signal="pressed" from="CanvasLayer/load_custom" to="." method="_on_load_custom_pressed"]
-[connection signal="button_up" from="CanvasLayer/main_menu" to="." method="_on_main_menu_button_up"]
+[connection signal="button_down" from="CanvasLayer/Panel/HBoxContainer/calibration" to="." method="_on_calibration_button_down"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/load_custom" to="." method="_on_load_custom_pressed"]
+[connection signal="button_up" from="CanvasLayer/Panel/HBoxContainer/main_menu" to="." method="_on_main_menu_button_up"]
 [connection signal="file_selected" from="CustomFileSelect" to="." method="_on_custom_file_selected"]
